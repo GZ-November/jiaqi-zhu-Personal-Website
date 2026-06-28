@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jiaqi Zhu — Personal Site</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,200;6..72,400;6..72,500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-sky: #175C88;
+            --color-coral: #CE5A48;
+            --color-forest: #10362A;
+            --color-paper: #F1EADD;
+            --color-ink: #2B3B48;
+            --color-sand: #D5C4A1;
+
+            --line-ink: rgba(43, 59, 72, 0.2);
+            --line-paper: rgba(241, 234, 221, 0.25);
+
+            --font-serif: 'Newsreader', 'Times New Roman', serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 2.5rem;
+            --space-lg: 5rem;
+            --space-xl: 12vh;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--color-paper);
+            color: var(--color-ink);
+            font-family: var(--font-sans);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: var(--color-coral);
+            color: var(--color-paper);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+        a:hover {
+            opacity: 0.6;
+        }
+
+        /* ── Announcement ── */
+        .announcement {
+            background-color: var(--color-ink);
+            color: var(--color-paper);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-align: center;
+            padding: var(--space-xs) var(--space-sm);
+            font-weight: 500;
+        }
+
+        /* ── Hero ── */
+        .hero-environment {
+            background-color: var(--color-sky);
+            color: var(--color-paper);
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .cloud-line {
+            position: absolute;
+            height: 1px;
+            background-color: var(--line-paper);
+            left: 0;
+            right: 0;
+            z-index: 1;
+        }
+        .cloud-line:nth-child(1) { top: 25%; right: 20%; }
+        .cloud-line:nth-child(2) { top: 40%; left: 10%; right: 40%; }
+        .cloud-line:nth-child(3) { top: 55%; left: 30%; right: 10%; }
+        .cloud-line:nth-child(4) { top: 75%; left: 5%; right: 60%; }
+
+        .fuji-mass {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 65vw;
+            height: 80vh;
+            background-color: var(--color-coral);
+            border-top-left-radius: 100%;
+            z-index: 2;
+            transform-origin: bottom right;
+        }
+
+        /* ── Navigation ── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-sm) var(--space-md);
+            border-bottom: 1px solid var(--line-paper);
+            backdrop-filter: blur(4px);
+            background-color: rgba(23, 92, 136, 0.8);
+        }
+
+        .nav-brand {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: var(--color-paper);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-md);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+        .nav-links a {
+            color: var(--color-paper);
+            opacity: 0.8;
+        }
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--color-paper);
+            color: var(--color-sky);
+            padding: 10px 20px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: var(--font-sans);
+        }
+        .btn:hover {
+            background-color: var(--color-coral);
+            color: var(--color-paper);
+            opacity: 1;
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--color-paper);
+            border: 1px solid var(--color-paper);
+        }
+        .btn-outline:hover {
+            background: var(--color-paper);
+            color: var(--color-sky);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            padding: var(--space-xl) var(--space-md);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 75vw;
+            pointer-events: none;
+        }
+        .hero-content > * {
+            pointer-events: auto;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            border: 1px solid var(--line-paper);
+            padding: 4px 12px;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-md);
+            align-self: flex-start;
+        }
+
+        .hero-headline {
+            font-family: var(--font-serif);
+            font-size: clamp(4rem, 8vw, 9rem);
+            line-height: 0.95;
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            margin-bottom: var(--space-sm);
+            color: var(--color-paper);
+            text-shadow: 0 4px 24px rgba(23, 92, 136, 0.2);
+        }
+
+        .hero-subtext {
+            font-size: 1rem;
+            max-width: 36ch;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: var(--space-md);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        /* ── Skills Bar ── */
+        .skills-bar {
+            background-color: var(--color-paper);
+            border-bottom: 1px solid var(--line-ink);
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+        }
+        .skill-cell {
+            padding: var(--space-md) var(--space-sm);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-right: 1px solid var(--line-ink);
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            color: var(--color-ink);
+            opacity: 0.6;
+            letter-spacing: -0.01em;
+            text-align: center;
+        }
+        .skill-cell:last-child {
+            border-right: none;
+        }
+
+        /* ── Section Common ── */
+        .section {
+            padding: var(--space-lg) var(--space-md);
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-lg);
+            color: var(--color-ink);
+        }
+
+        .section-subtitle {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            color: var(--color-coral);
+            margin-bottom: var(--space-sm);
+        }
+
+        /* ── About ── */
+        .about-section {
+            background-color: var(--color-paper);
+            border-bottom: 1px solid var(--line-ink);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
+            align-items: start;
+        }
+        .about-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        .about-text p {
+            margin-bottom: var(--space-sm);
+        }
+        .about-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-sm);
+        }
+        .highlight-card {
+            background-color: var(--color-sand);
+            padding: var(--space-sm);
+            border-radius: 2px;
+        }
+        .highlight-number {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--color-coral);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .highlight-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 500;
+            opacity: 0.7;
+        }
+
+        /* ── Resume ── */
+        .resume-section {
+            background-color: var(--color-sand);
+            border-bottom: 1px solid var(--line-ink);
+        }
+        .resume-timeline {
+            position: relative;
+        }
+        .resume-item {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: var(--space-md);
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid var(--line-ink);
+            transition: all 0.2s ease;
+        }
+        .resume-item:first-child {
+            padding-top: 0;
+        }
+        .resume-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .resume-item:hover {
+            padding-left: 12px;
+            color: var(--color-coral);
+        }
+        .resume-date {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 500;
+            opacity: 0.7;
+            padding-top: 2px;
+        }
+        .resume-role {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            letter-spacing: -0.01em;
+            margin-bottom: 4px;
+        }
+        .resume-company {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+            color: var(--color-coral);
+            margin-bottom: 8px;
+        }
+        .resume-desc {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            max-width: 48ch;
+        }
+
+        /* ── Portfolio ── */
+        .portfolio-section {
+            background-color: var(--color-paper);
+            border-bottom: 1px solid var(--line-ink);
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        .project-card {
+            padding: var(--space-md);
+            border-right: 1px solid var(--line-ink);
+            border-bottom: 1px solid var(--line-ink);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+        .project-card:nth-child(2n) {
+            border-right: none;
+        }
+        .project-card:nth-last-child(-n+2) {
+            border-bottom: none;
+        }
+        .project-card:hover {
+            background-color: var(--color-sand);
+        }
+        .project-tag {
+            display: inline-block;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            color: var(--color-coral);
+            border: 1px solid var(--color-coral);
+            padding: 2px 8px;
+            align-self: flex-start;
+        }
+        .project-title {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--color-ink);
+        }
+        .project-desc {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        .project-link {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            color: var(--color-sky);
+        }
+
+        /* ── Research ── */
+        .research-section {
+            background-color: var(--color-ink);
+            color: var(--color-paper);
+            border-bottom: 1px solid rgba(241, 234, 221, 0.15);
+        }
+        .research-section .section-title {
+            color: var(--color-paper);
+        }
+        .research-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background-color: rgba(241, 234, 221, 0.1);
+        }
+        .research-card {
+            background-color: var(--color-ink);
+            padding: var(--space-md);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+            transition: all 0.2s ease;
+        }
+        .research-card:hover {
+            background-color: rgba(23, 92, 136, 0.3);
+        }
+        .research-meta {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.6;
+        }
+        .research-tag {
+            color: var(--color-coral);
+            font-weight: 600;
+            opacity: 1;
+            border: 1px solid var(--color-coral);
+            padding: 2px 8px;
+        }
+        .research-title {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            color: var(--color-paper);
+        }
+        .research-desc {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        .research-link {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            color: var(--color-sand);
+            align-self: flex-start;
+        }
+        .research-link:hover {
+            color: var(--color-coral);
+        }
+
+        .research-update-note {
+            margin-top: var(--space-md);
+            padding: var(--space-sm) var(--space-md);
+            background-color: rgba(23, 92, 136, 0.2);
+            border-left: 3px solid var(--color-coral);
+            font-size: 0.75rem;
+            opacity: 0.8;
+            letter-spacing: 0.02em;
+        }
+
+        /* ── Blog ── */
+        .blog-section {
+            background-color: var(--color-sand);
+            border-bottom: 1px solid var(--line-ink);
+        }
+        .blog-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .blog-table th {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--color-ink);
+            color: var(--color-ink);
+            opacity: 0.7;
+        }
+        .blog-table td {
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid var(--line-ink);
+            transition: all 0.2s ease;
+        }
+        .blog-table tr:hover td {
+            color: var(--color-coral);
+            padding-left: 8px;
+        }
+        .blog-date {
+            width: 15%;
+            font-size: 0.8rem;
+        }
+        .blog-cat {
+            width: 20%;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .blog-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        /* ── Contact ── */
+        .contact-section {
+            background-color: var(--color-paper);
+            border-bottom: 1px solid var(--line-ink);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
+        }
+        .contact-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm);
+            border-bottom: 1px solid var(--line-ink);
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            letter-spacing: -0.01em;
+            transition: all 0.2s ease;
+        }
+        .contact-link:hover {
+            opacity: 0.6;
+            padding-left: 12px;
+        }
+
+        /* ── Footer ── */
+        .footer {
+            background-color: var(--color-forest);
+            color: var(--color-sand);
+            padding: var(--space-lg) var(--space-md) var(--space-md);
+            border-top: 1px solid var(--color-ink);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+        .footer-brand {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            margin-bottom: var(--space-sm);
+            color: var(--color-paper);
+        }
+        .footer-desc {
+            font-size: 0.8rem;
+            max-width: 30ch;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+        .footer-col-title {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-paper);
+            margin-bottom: var(--space-sm);
+            font-weight: 600;
+        }
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .footer-links li {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--space-md);
+            border-top: 1px solid rgba(213, 196, 161, 0.2);
+            font-size: 0.7rem;
+            opacity: 0.6;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── Mobile Menu ── */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-paper);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .hero-headline { font-size: 10vw; }
+            .fuji-mass { width: 80vw; height: 70vh; }
+            .skills-bar { grid-template-columns: repeat(3, 1fr); }
+            .skill-cell:nth-child(3n) { border-right: none; }
+            .skill-cell:nth-child(n+4) { border-top: 1px solid var(--line-ink); }
+            .about-grid { grid-template-columns: 1fr; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .project-card { border-right: none; border-bottom: 1px solid var(--line-ink); }
+            .project-card:last-child { border-bottom: none; }
+            .research-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
+            .footer-brand-col { grid-column: 1 / -1; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: var(--space-sm); }
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: rgba(23, 92, 136, 0.95);
+                backdrop-filter: blur(8px);
+                padding: var(--space-md);
+                gap: var(--space-sm);
+                border-bottom: 1px solid var(--line-paper);
+            }
+            .mobile-menu-btn { display: block; }
+            .hero-content { max-width: 100%; padding: var(--space-lg) var(--space-sm); }
+            .fuji-mass { width: 100vw; height: 60vh; border-top-left-radius: 80vw; }
+            .resume-item { grid-template-columns: 1fr; gap: 4px; }
+            .resume-date { margin-bottom: 4px; }
+            .blog-table, .blog-table tbody, .blog-table tr, .blog-table td, .blog-table th { display: block; }
+            .blog-table tr { border-bottom: 1px solid var(--line-ink); padding: var(--space-md) 0; }
+            .blog-table td { border: none; padding: 4px 0; width: 100%; }
+            .blog-table th { display: none; }
+            .blog-title { margin-top: 8px; }
+            .about-highlights { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════ Announcement ═══════════ -->
+    <div class="announcement">
+        👋 Welcome! Site updated regularly — thanks for visiting.
+    </div>
+
+    <!-- ═══════════ Hero ═══════════ -->
+    <div class="hero-environment" id="home">
+        <div class="cloud-line"></div>
+        <div class="cloud-line"></div>
+        <div class="cloud-line"></div>
+        <div class="cloud-line"></div>
+        <div class="fuji-mass"></div>
+
+        <nav>
+            <a href="#home" class="nav-brand">Jiaqi Zhu</a>
+            <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#resume">Resume</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="market-recap/index.html">Market Recap</a>
+                <a href="research/index.html">Research</a>
+                <a href="blog/index.html">Blog</a>
+                <a href="library/index.html">Library</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        </nav>
+
+        <header class="hero-content">
+            <div class="hero-label">Macro · Industry · Supply Chain</div>
+            <h1 class="hero-headline">Learning<br>out loud.</h1>
+            <p class="hero-subtext">HKUST RMBI student exploring the intersection of macroeconomics, industry supply chains, and data-driven strategy. Still learning — documenting the journey as I go.</p>
+            <div class="hero-cta">
+                <a href="market-recap/index.html" class="btn">Weekly Market Recap</a>
+                <a href="research/index.html" class="btn btn-outline">Research Reports</a>
+            </div>
+        </header>
+    </div>
+
+    <!-- ═══════════ Skills ═══════════ -->
+    <section class="skills-bar">
+        <div class="skill-cell">Python</div>
+        <div class="skill-cell">Java</div>
+        <div class="skill-cell">Financial Modeling</div>
+        <div class="skill-cell">Data Mining</div>
+        <div class="skill-cell">Big Data / Spark</div>
+        <div class="skill-cell">Risk Management</div>
+    </section>
+
+    <!-- ═══════════ About ═══════════ -->
+    <section class="section about-section" id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>I am <strong>Jiaqi Zhu</strong>, a student at the <strong>Hong Kong University of Science and Technology (HKUST)</strong> pursuing a BSc in <strong>Risk Management &amp; Business Intelligence (RMBI)</strong>, Class of 2029.</p>
+                <p>I care deeply about <strong>how industries work</strong> — supply chains, competitive dynamics, and the macro forces shaping them. My lens combines <strong>data analysis, financial modeling, and cross-market research</strong> to understand not just what's happening, but why it matters.</p>
+                <p>I currently serve as a Research Analyst at <strong>Mortise Capital</strong>, where I produce weekly macro recaps tracking global market rotations, sector-level moves, and policy signals. I also consult as a Business Analyst for <strong>XinJiang Tianyun Organic Agriculture</strong>, applying supply-chain diagnostics and market entry frameworks to real-world decisions.</p>
+                <p>I'm <strong>still learning</strong> — and I think that's the point. Every report, every project, every conversation teaches me something new about how the pieces fit together. This site is where I share the work in progress.</p>
+            </div>
+            <div class="about-highlights">
+                <div class="highlight-card">
+                    <div class="highlight-number">5+</div>
+                    <div class="highlight-label">Markets Analyzed</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-number">10+</div>
+                    <div class="highlight-label">Research Reports</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-number">3</div>
+                    <div class="highlight-label">Competition Awards</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-number">4</div>
+                    <div class="highlight-label">Languages</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ Resume ═══════════ -->
+    <section class="section resume-section" id="resume">
+        <h2 class="section-title">Experience</h2>
+        <div class="resume-timeline">
+
+            <div class="resume-item">
+                <div class="resume-date">Jun 2026</div>
+                <div>
+                    <div class="resume-role">Research Analyst</div>
+                    <div class="resume-company">Mortise Capital · Remote</div>
+                </div>
+            </div>
+
+            <div class="resume-item">
+                <div class="resume-date">Sep 2025 — Present</div>
+                <div>
+                    <div class="resume-role">Student Ambassador</div>
+                    <div class="resume-company">Hong Kong InnoX Entrepreneur · Hong Kong</div>
+                    <p class="resume-desc">Organized monthly entrepreneurship forums and networking events, connecting 50+ students with startup founders, VCs, and industry leaders from the Greater Bay Area innovation ecosystem. Authored 10+ startup evaluation reports and industry landscape reviews covering hard-tech sectors (smart hardware, robotics, deep tech), strengthening the knowledge-sharing platform for the campus entrepreneur community.</p>
+                </div>
+            </div>
+
+            <div class="resume-item">
+                <div class="resume-date">Sep 2024 — Present</div>
+                <div>
+                    <div class="resume-role">Business Analyst &amp; Strategic Consultant</div>
+                    <div class="resume-company">XinJiang Tianyun Organic Agriculture Co., Ltd. · Urumqi / Shanghai</div>
+                    <p class="resume-desc">Analyzed domestic and five overseas markets, producing reports that identified high-value trends and supported strategic decisions. Led workflow diagnostics and client-service coordination, mapping a process-improvement roadmap balancing cost reduction and operational risk control.</p>
+                </div>
+            </div>
+
+            <div class="resume-item">
+                <div class="resume-date">Class of 2029</div>
+                <div>
+                    <div class="resume-role">BSc in Risk Management &amp; Business Intelligence (RMBI)</div>
+                    <div class="resume-company">Hong Kong University of Science and Technology (HKUST)</div>
+                    <p class="resume-desc">Relevant Coursework: Corporate Finance, Data Mining, Big Data, Business Statistics, Python &amp; Java, Financial and Management Accounting, Management, Operations Management, Math for Economists</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div style="margin-top: var(--space-lg);">
+            <a href="#" class="btn" style="background-color: var(--color-ink); color: var(--color-paper);">📄 Download Full Resume (PDF)</a>
+        </div>
+    </section>
+
+    <!-- ═══════════ Portfolio ═══════════ -->
+    <section class="section portfolio-section" id="portfolio">
+        <h2 class="section-title">Projects &amp; Competitions</h2>
+        <div class="portfolio-grid">
+
+            <div class="project-card">
+                <span class="project-tag">AI &amp; Product</span>
+                <div class="project-title">MindLens — AI Youth Growth &amp; Mental Wellness App</div>
+                <p class="project-desc">TRAE AI Inventiveness Competition project. Designed and prototyped an AI-powered app that helps adolescents transform daily stressors into structured reflection, skill-building, and action plans through a "Growth Galaxy" interaction system.</p>
+                <a href="https://gz-november.github.io/mindlens/mindlens-nebula.html" class="project-link" target="_blank">Live Demo →</a>
+            </div>
+
+            <div class="project-card">
+                <span class="project-tag">FinTech</span>
+                <div class="project-title">BOCHK Challenge 2026 — Digital SME Lending Marketplace</div>
+                <p class="project-desc">Co-developed a digital SME lending marketplace using big data and alternative credit signals. Built market and monetization logic including segment prioritization, multi-stream fees, and a HK$1.20M–8.43M three-year revenue projection with eKYC and risk controls.</p>
+            </div>
+
+            <div class="project-card">
+                <span class="project-tag">AI Governance</span>
+                <div class="project-title">Deloitte Digital Camp — X-Bank AI Governance &amp; Compliance Blueprint</div>
+                <p class="project-desc">Designed an end-to-end AI governance blueprint for a commercial bank covering risk taxonomy, lifecycle controls, operating model, and executive oversight. Built a decision framework linking Expected Annual Loss, stress loss, and residual risk at use-case and portfolio levels.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══════════ Research ═══════════ -->
+    <section class="section research-section" id="research">
+        <h2 class="section-title">Research</h2>
+        <p style="margin-top: -2rem; margin-bottom: var(--space-lg); opacity: 0.7; font-size: 0.9rem; max-width: 50ch;">
+            Industry research reports · Continuously updated. Focused on <strong>AI Governance, FinTech, and Emerging Markets</strong> — observations and analysis on key industry trends.
+        </p>
+
+        <div class="research-grid">
+
+            <div class="research-card">
+                <div class="research-meta">
+                    <span>2026.07</span>
+                    <span class="research-tag">AI Governance</span>
+                </div>
+                <div class="research-title">Commercial Bank AI Governance: From Blueprint to Implementation</div>
+                <p class="research-desc">End-to-end AI governance framework covering risk taxonomy, lifecycle controls, and executive oversight — built during Deloitte Digital Camp for a commercial bank use case.</p>
+                <a href="projects/deloitte/index.html" class="research-link" target="_blank">View Project →</a>
+            </div>
+
+            <div class="research-card">
+                <div class="research-meta">
+                    <span>2026.06</span>
+                    <span class="research-tag">Market Analysis</span>
+                </div>
+                <div class="research-title">China Organic Agriculture Going Global: Five Overseas Markets</div>
+                <p class="research-desc">Cross-market analysis with channel strategy, pricing benchmarks, and risk frameworks — directly supporting XinJiang Tianyun's international expansion.</p>
+                <a href="research/index.html" class="research-link">Read More →</a>
+            </div>
+
+            <div class="research-card">
+                <div class="research-meta">
+                    <span>2026.06</span>
+                    <span class="research-tag">FinTech</span>
+                </div>
+                <div class="research-title">SME Digital Lending: The Promise of Alternative Credit Signals</div>
+                <p class="research-desc">BOCHK Challenge 2026 — digital lending marketplace with big data-driven credit assessment, HK$1.2M–8.4M revenue projection, and eKYC/risk controls.</p>
+                <a href="research/index.html" class="research-link">Read More →</a>
+            </div>
+
+            <div class="research-card">
+                <div class="research-meta">
+                    <span>2026.05</span>
+                    <span class="research-tag">Startup Ecosystem</span>
+                </div>
+                <div class="research-title">Greater Bay Area Hard-Tech Startup Ecosystem Map</div>
+                <p class="research-desc">10+ InnoX startup evaluations across smart hardware, robotics, and deep tech — mapping funding patterns, founder profiles, and investment trends.</p>
+                <a href="research/index.html" class="research-link">Read More →</a>
+            </div>
+
+        </div>
+
+        <div class="research-update-note">
+            📌 This section is updated regularly. Each report is based on independent research and industry practice.
+            <a href="research/index.html" style="color: var(--color-coral); text-decoration: underline;">View All Reports →</a>
+        </div>
+    </section>
+
+    <!-- ═══════════ Blog ═══════════ -->
+    <section class="section blog-section" id="blog">
+        <h2 class="section-title">Blog</h2>
+        <p style="margin-top: -2rem; margin-bottom: var(--space-md); opacity: 0.7; font-size: 0.9rem; max-width: 50ch;">
+            Personal notes on whatever catches my attention — markets, tech, strategy, and occasional musings.
+        </p>
+        <table class="blog-table">
+            <thead>
+                <tr>
+                    <th class="blog-date">Date</th>
+                    <th class="blog-cat">Category</th>
+                    <th class="blog-title">Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="blog-date">Jul 2026</td>
+                    <td class="blog-cat">AI Product</td>
+                    <td class="blog-title"><a href="blog/posts/template.html">MindLens: Designing AI to Support Adolescent Mental Wellness</a></td>
+                </tr>
+                <tr>
+                    <td class="blog-date">Jun 2026</td>
+                    <td class="blog-cat">FinTech</td>
+                    <td class="blog-title"><a href="blog/posts/template.html">BOCHK Challenge: Key Decisions in Building a Digital SME Lending Platform</a></td>
+                </tr>
+                <tr>
+                    <td class="blog-date">Jun 2026</td>
+                    <td class="blog-cat">Research</td>
+                    <td class="blog-title"><a href="blog/posts/template.html">AI Governance in Commercial Banking: Practice and Reflections</a></td>
+                </tr>
+                <tr>
+                    <td class="blog-date">May 2026</td>
+                    <td class="blog-cat">Strategy</td>
+                    <td class="blog-title"><a href="blog/posts/template.html">China Organic Agriculture: Market Selection and Strategic Framework</a></td>
+                </tr>
+                <tr>
+                    <td class="blog-date">Apr 2026</td>
+                    <td class="blog-cat">Startup</td>
+                    <td class="blog-title"><a href="blog/posts/template.html">GBA Hard Tech: Investment Trends from 10 Startup Evaluations</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="margin-top: var(--space-md);">
+            <a href="blog/index.html" class="btn" style="background-color: var(--color-ink); color: var(--color-paper);">View All Posts →</a>
+        </div>
+    </section>
+
+    <!-- ═══════════ Contact ═══════════ -->
+    <section class="section contact-section" id="contact">
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="contact-grid">
+            <div class="contact-text">
+                <p>If you're interested in my research or projects, feel free to reach out. I'm based in <strong>Hong Kong, China</strong> and open to internship and research collaboration opportunities.</p>
+                <p style="margin-top: var(--space-sm); opacity: 0.7;">Email: jzhucr@connect.ust.hk</p>
+                <p style="margin-top: 4px; opacity: 0.7;">Phone: +852 8496 7440</p>
+            </div>
+            <div class="contact-links">
+                <a href="mailto:jzhucr@connect.ust.hk" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/jiaqi-zhu-5a44a4384" class="contact-link" target="_blank">LinkedIn</a>
+                <a href="https://gz-november.github.io/mindlens/mindlens-nebula.html" class="contact-link" target="_blank">MindLens Demo</a>
+                <a href="https://github.com/GZ-November" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ Footer ═══════════ -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand-col">
+                <div class="footer-brand">Jiaqi Zhu</div>
+                <p class="footer-desc">HKUST RMBI · Risk Management &amp; Business Intelligence. Data-driven insights for finance, strategy, and beyond.</p>
+            </div>
+            <div>
+                <h4 class="footer-col-title">Navigate</h4>
+                <ul class="footer-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="market-recap/index.html">Market Recap</a></li>
+                    <li><a href="research/index.html">Research</a></li>
+                    <li><a href="blog/index.html">Blog</a></li>
+                    <li><a href="library/index.html">Library</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-col-title">Projects</h4>
+                <ul class="footer-links">
+                    <li><a href="https://gz-november.github.io/mindlens/mindlens-nebula.html" target="_blank">MindLens</a></li>
+                    <li><span style="opacity:0.5;">BOCHK Challenge</span></li>
+                    <li><span style="opacity:0.5;">Deloitte AI Governance</span></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-col-title">Connect</h4>
+                <ul class="footer-links">
+                    <li><a href="mailto:jzhucr@connect.ust.hk">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/jiaqi-zhu-5a44a4384" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/GZ-November" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Jiaqi Zhu. All rights reserved.</span>
+            <span>Built with ❤️</span>
+        </div>
+    </footer>
+
+    <!-- ── Smooth scroll close mobile menu ── -->
+    <script>
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('open');
+            });
+        });
+    </script>
+</body>
+</html>

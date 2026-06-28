@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Recap · Jun 22–26, 2026 — Mortise Capital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,200;6..72,400;6..72,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-sky: #175C88; --color-coral: #CE5A48; --color-forest: #10362A;
+            --color-paper: #F1EADD; --color-ink: #2B3B48; --color-sand: #D5C4A1;
+            --line-ink: rgba(43,59,72,0.15);
+            --font-serif: 'Newsreader','Times New Roman',serif;
+            --font-sans: 'Inter',-apple-system,sans-serif;
+            --space-xs: 0.5rem; --space-sm: 1rem; --space-md: 2.5rem; --space-lg: 5rem;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+        body { background:var(--color-paper); color:var(--color-ink); font-family:var(--font-sans); line-height:1.6; }
+        ::selection { background:var(--color-coral); color:var(--color-paper); }
+        a { color:var(--color-sky); text-decoration:none; transition:opacity 0.2s; }
+        a:hover { opacity:0.6; }
+
+        .nav-bar { background:var(--color-coral); padding:var(--space-sm) var(--space-md); display:flex; justify-content:space-between; align-items:center; }
+        .nav-brand { font-family:var(--font-serif); font-size:1.3rem; font-weight:500; color:var(--color-paper); }
+        .nav-back { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--color-paper); opacity:0.8; }
+
+        .recap-header { max-width:720px; margin:0 auto; padding:var(--space-lg) var(--space-md) var(--space-md); }
+        .recap-label { display:inline-block; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.1em; font-weight:600; padding:4px 12px; border:1px solid var(--color-coral); color:var(--color-coral); margin-bottom:var(--space-sm); }
+        .recap-title { font-family:var(--font-serif); font-size:clamp(2rem,5vw,3.5rem); font-weight:400; letter-spacing:-0.03em; line-height:1.1; margin-bottom:var(--space-xs); }
+        .recap-subtitle { font-size:1rem; opacity:0.6; margin-bottom:var(--space-md); }
+        .recap-meta { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; opacity:0.5; display:flex; gap:var(--space-md); align-items:center; flex-wrap:wrap; }
+        .recap-meta span+span::before { content:'·'; margin-right:var(--space-sm); opacity:0.4; }
+
+        .recap-body { max-width:680px; margin:0 auto; padding:0 var(--space-md); font-family:var(--font-serif); font-size:1.15rem; line-height:1.85; color:rgba(43,59,72,0.9); }
+        .recap-body h2 { font-family:var(--font-sans); font-size:1.5rem; font-weight:600; color:var(--color-ink); margin:var(--space-lg) 0 var(--space-sm); }
+        .recap-body p { margin-bottom:var(--space-sm); }
+        .recap-body strong { color:var(--color-ink); }
+        .recap-body .data-point { display:inline-block; background:rgba(206,90,72,0.1); padding:2px 8px; border-radius:2px; font-family:var(--font-sans); font-size:0.9em; font-weight:600; }
+        .recap-body .divider { border:none; border-top:1px solid var(--line-ink); margin:var(--space-md) 0; }
+
+        .data-table { width:100%; border-collapse:collapse; margin:var(--space-sm) 0; font-family:var(--font-sans); font-size:0.85rem; }
+        .data-table th { text-align:left; font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em; opacity:0.5; padding-bottom:8px; border-bottom:1px solid var(--line-ink); }
+        .data-table td { padding:6px 0; border-bottom:1px solid rgba(43,59,72,0.08); }
+        .data-table .pos { color:var(--color-forest); }
+        .data-table .neg { color:var(--color-coral); }
+
+        .recap-footer { max-width:680px; margin:var(--space-lg) auto; padding:var(--space-md); border-top:1px solid var(--line-ink); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-sm); }
+        .recap-footer a { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; font-weight:600; color:var(--color-sky); }
+        .btn-dl { display:inline-block; padding:8px 16px; background:var(--color-ink); color:var(--color-paper); font-size:0.65rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; }
+        .btn-dl:hover { background:var(--color-coral); color:var(--color-paper); opacity:1; }
+
+        .site-footer { background:var(--color-forest); color:var(--color-sand); padding:var(--space-md); text-align:center; font-size:0.7rem; opacity:0.6; text-transform:uppercase; letter-spacing:0.05em; }
+
+        @media(max-width:768px) { .recap-body{font-size:1.05rem;} .recap-header{padding-top:var(--space-md);} }
+    </style>
+</head>
+<body>
+
+    <div class="nav-bar">
+        <a href="../../index.html" class="nav-brand">Jiaqi Zhu</a>
+        <a href="../index.html" class="nav-back">← Back to Market Recap</a>
+    </div>
+
+    <div class="recap-header">
+        <span class="recap-label">Mortise Capital · Issue 27</span>
+        <h1 class="recap-title">AI De-rating Spreads as Oil Relief Cushions Rotation</h1>
+        <p class="recap-subtitle">Global markets repriced a hawkish Fed and AI leadership break — rotation rather than broad risk-off.</p>
+        <div class="recap-meta">
+            <span>22–26 Jun 2026</span>
+            <span>Edited by George ZHU</span>
+            <span>Mortise Capital Research</span>
+        </div>
+    </div>
+
+    <div class="recap-body">
+
+        <p>Global markets spent the week repricing a <strong>hawkish Fed backdrop</strong> and a <strong>sharp break in AI leadership</strong>. The stress started in U.S. tech: on Tuesday, the Nasdaq fell <span class="data-point">-2.2%</span>, the S&P 500 lost <span class="data-point">-1.4%</span>, and the Philadelphia Semiconductor Index (SOXX) dropped <span class="data-point">-7.9%</span> as investors cut crowded semiconductor exposure.</p>
+
+        <p>By Friday, the pressure had spread across the global AI chain: <strong>South Korea's KOSPI</strong> down <span class="data-point">-5.8%</span>, <strong>Japan's Nikkei</strong> off about <span class="data-point">-4%</span>, and European chip names also lower.</p>
+
+        <p>Macro offered little relief. May U.S. <strong>headline PCE</strong> rose <span class="data-point">+4.1% YoY</span> and <strong>core PCE</strong> rose <span class="data-point">+3.4%</span>, while Q1 GDP was revised up to <span class="data-point">+2.1% annualized</span> — but consumer spending slowed to just <span class="data-point">+0.5%</span>.</p>
+
+        <hr class="divider">
+
+        <h2>Rotation, Not Risk-Off</h2>
+
+        <p>The week still looked more like <strong>rotation</strong> than a broad risk-off break:</p>
+
+        <table class="data-table">
+            <thead><tr><th>Index</th><th>Weekly Change</th></tr></thead>
+            <tbody>
+                <tr><td>S&P 500</td><td class="neg">-2.0%</td></tr>
+                <tr><td>Nasdaq</td><td class="neg">-4.6%</td></tr>
+                <tr><td>Dow Jones</td><td class="pos">+0.6%</td></tr>
+                <tr><td>Russell 2000</td><td class="pos">+1.0%</td></tr>
+            </tbody>
+        </table>
+
+        <p>Lower oil prices and easing Treasury yields helped cushion non-tech cyclicals, even as AI-linked equities de-rated globally.</p>
+
+        <hr class="divider">
+
+        <h2>Key Stock: Micron</h2>
+
+        <p><strong>Micron</strong> was the critical name of the week. After falling <span class="data-point">-13.2%</span> in Tuesday's sell-off, it reported:</p>
+        <ul>
+            <li><strong>Fiscal Q3 EPS:</strong> $25.11</li>
+            <li><strong>Revenue:</strong> $41.46 billion</li>
+            <li><strong>Gross Margin:</strong> 84.6%</li>
+        </ul>
+        <p>The earnings confirmed <strong>tight AI memory supply</strong> — underlying demand for upstream infrastructure remains robust.</p>
+
+        <hr class="divider">
+
+        <h2>Positioning Takeaway</h2>
+
+        <p>The market's divide is now clearer: <strong>upstream memory and components retain pricing power</strong>, while consumer hardware and AI applications face higher costs and tougher monetization tests. Positioning should stay selective — <strong>profitable AI infrastructure and quality cyclicals over high-multiple AI applications</strong>.</p>
+
+    </div>
+
+    <div class="recap-footer">
+        <a href="../index.html">← All Recaps</a>
+        <div>
+            <a href="../../assets/Mortise_Capital_Weekly_Recap_Jun22-26_2026.docx" class="btn-dl">📥 Download Original (.docx)</a>
+        </div>
+        <a href="../../index.html">Home →</a>
+    </div>
+
+    <footer class="site-footer">© 2026 Mortise Capital · Jiaqi Zhu</footer>
+
+</body>
+</html>

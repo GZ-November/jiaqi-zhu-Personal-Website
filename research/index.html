@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research — Jiaqi Zhu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,200;6..72,400;6..72,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-sky: #175C88; --color-coral: #CE5A48; --color-forest: #10362A;
+            --color-paper: #F1EADD; --color-ink: #2B3B48; --color-sand: #D5C4A1;
+            --line-ink: rgba(43,59,72,0.2); --line-paper: rgba(241,234,221,0.25);
+            --font-serif: 'Newsreader','Times New Roman',serif;
+            --font-sans: 'Inter',-apple-system,sans-serif;
+            --space-xs: 0.5rem; --space-sm: 1rem; --space-md: 2.5rem; --space-lg: 5rem; --space-xl: 8vh;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+        html { scroll-behavior:smooth; }
+        body { background:var(--color-ink); color:var(--color-paper); font-family:var(--font-sans); line-height:1.5; }
+        ::selection { background:var(--color-coral); color:var(--color-paper); }
+        a { color:inherit; text-decoration:none; transition:opacity 0.2s; }
+        a:hover { opacity:0.6; }
+
+        .nav-bar { background:var(--color-ink); border-bottom:1px solid rgba(241,234,221,0.1); position:sticky; top:0; z-index:10; display:flex; justify-content:space-between; align-items:center; padding:var(--space-sm) var(--space-md); }
+        .nav-brand { font-family:var(--font-serif); font-size:1.5rem; font-weight:500; letter-spacing:-0.02em; color:var(--color-paper); }
+        .nav-links { display:flex; gap:var(--space-md); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; font-weight:500; }
+        .nav-links a { opacity:0.7; }
+        .nav-links a:hover,.nav-links a.active-link { opacity:1; color:var(--color-coral); }
+        .mobile-menu-btn { display:none; background:none; border:none; color:var(--color-paper); font-size:1.5rem; cursor:pointer; }
+
+        .page-header { padding:var(--space-xl) var(--space-md); }
+        .page-header h1 { font-family:var(--font-serif); font-size:clamp(3rem,7vw,6rem); font-weight:400; letter-spacing:-0.03em; line-height:1; margin-bottom:var(--space-sm); }
+        .page-header p { font-size:1rem; opacity:0.7; max-width:48ch; line-height:1.6; }
+        .page-header .focus-area { display:inline-block; margin-top:var(--space-sm); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; padding:6px 16px; background:rgba(23,92,136,0.3); border:1px solid var(--color-sky); }
+
+        .research-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(241,234,221,0.08); border-top:1px solid rgba(241,234,221,0.1); }
+        .research-card { padding:var(--space-md); background:var(--color-ink); display:flex; flex-direction:column; gap:var(--space-xs); transition:all 0.2s; }
+        .research-card:hover { background:rgba(23,92,136,0.2); }
+        .research-meta { display:flex; align-items:center; gap:var(--space-sm); font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em; opacity:0.5; }
+        .research-tag { color:var(--color-coral); border:1px solid var(--color-coral); padding:2px 8px; font-weight:600; opacity:1; }
+        .research-title { font-family:var(--font-serif); font-size:1.6rem; letter-spacing:-0.01em; line-height:1.2; }
+        .research-desc { font-size:0.8rem; opacity:0.6; line-height:1.6; flex-grow:1; }
+        .research-action { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em; font-weight:600; color:var(--color-sand); }
+        .update-note { padding:var(--space-md); border-top:1px solid rgba(241,234,221,0.1); font-size:0.75rem; opacity:0.5; text-align:center; }
+
+        .footer { background:var(--color-forest); color:var(--color-sand); padding:var(--space-lg) var(--space-md) var(--space-md); }
+        .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:var(--space-md); margin-bottom:var(--space-lg); }
+        .footer-brand { font-family:var(--font-serif); font-size:2rem; margin-bottom:var(--space-sm); color:var(--color-paper); }
+        .footer-desc { font-size:0.8rem; max-width:30ch; opacity:0.8; }
+        .footer-col-title { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--color-paper); margin-bottom:var(--space-sm); font-weight:600; }
+        .footer-links { list-style:none; display:flex; flex-direction:column; gap:8px; }
+        .footer-links li { font-size:0.8rem; opacity:0.8; }
+        .footer-bottom { display:flex; justify-content:space-between; padding-top:var(--space-md); border-top:1px solid rgba(213,196,161,0.2); font-size:0.7rem; opacity:0.6; text-transform:uppercase; letter-spacing:0.05em; }
+
+        @media(max-width:1024px){ .research-grid{grid-template-columns:1fr;} }
+        @media(max-width:768px){
+            .nav-links{display:none;}
+            .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--color-ink);padding:var(--space-md);gap:var(--space-sm);border-bottom:1px solid rgba(241,234,221,0.1);}
+            .mobile-menu-btn{display:block;}
+            .footer-grid{grid-template-columns:1fr 1fr;}
+            .footer-brand-col{grid-column:1/-1;}
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-bar">
+        <a href="../index.html" class="nav-brand">Jiaqi Zhu</a>
+        <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../index.html#about">About</a>
+            <a href="../index.html#resume">Resume</a>
+            <a href="../index.html#portfolio">Portfolio</a>
+            <a href="../market-recap/index.html">Market Recap</a>
+            <a href="../research/index.html" class="active-link">Research</a>
+            <a href="../blog/index.html">Blog</a>
+            <a href="../library/index.html">Library</a>
+            <a href="../index.html#contact">Contact</a>
+        </div>
+    </div>
+
+    <div class="page-header">
+        <h1>Research</h1>
+        <p>In-depth industry research reports. Independent analysis on <strong>AI Governance, FinTech, and Emerging Markets</strong> — data-driven, forward-looking, and continuously updated.</p>
+        <span class="focus-area">Focus: AI Governance · Financial Technology · Market Intelligence · Startup Ecosystem</span>
+    </div>
+
+    <div class="research-grid">
+
+        <!-- ── Copy this block to add a new report ── -->
+        <div class="research-card">
+            <div class="research-meta">
+                <span>2026.07</span>
+                <span class="research-tag">AI Governance</span>
+            </div>
+            <div class="research-title">AI Governance in Commercial Banking: A Practical Implementation Framework</div>
+            <p class="research-desc">Examines how commercial banks can operationalize AI governance under evolving regulatory frameworks (NIST AI RMF, EU AI Act). Proposes a four-layer model — risk taxonomy, lifecycle controls, executive oversight, and decision-rights mapping — with a quantification methodology linking Expected Annual Loss to residual risk at portfolio level. Based on the Deloitte Digital Camp X-Bank case.</p>
+            <a href="../projects/deloitte/" class="research-action">View Full Report →</a>
+        </div>
+        <!-- ── Copy until here ── -->
+
+        <div class="research-card">
+            <div class="research-meta">
+                <span>2026.06</span>
+                <span class="research-tag">FinTech</span>
+            </div>
+            <div class="research-title">Alternative Credit Scoring for SME Lending: Opportunities and Risks</div>
+            <p class="research-desc">Analyzes the emerging landscape of non-traditional credit signals — transaction data, supply chain behavior, social footprint — in SME loan underwriting. Builds on the BOCHK Challenge 2026 marketplace prototype, with HK$1.2M–8.4M revenue modeling, eKYC design, and concentration risk controls. Evaluates regulatory headwinds from HKMA's latest consultation paper on alternative credit assessment.</p>
+            <span class="research-action" style="opacity:0.5;">Report available soon</span>
+        </div>
+
+        <div class="research-card">
+            <div class="research-meta">
+                <span>2026.06</span>
+                <span class="research-tag">Market Intelligence</span>
+            </div>
+            <div class="research-title">Cross-Border Organic Agriculture: Market Entry Strategy for Five Overseas Markets</div>
+            <p class="research-desc">Comparative market analysis across five target regions, benchmarking pricing, distribution channels, and regulatory barriers for Chinese organic agriculture exports. Includes supply-chain diagnostics, competitive mapping, and phased market entry recommendations. Primary research conducted through XinJiang Tianyun's operations in Urumqi and Shanghai.</p>
+            <span class="research-action" style="opacity:0.5;">Report available soon</span>
+        </div>
+
+        <div class="research-card">
+            <div class="research-meta">
+                <span>2026.05</span>
+                <span class="research-tag">Startup Ecosystem</span>
+            </div>
+            <div class="research-title">Greater Bay Area Hard-Tech Ecosystem Map: Q2 2026</div>
+            <p class="research-desc">Synthesizes 10+ startup evaluation reports from InnoX's campus entrepreneurship network. Maps investment trends across smart hardware, robotics, and deep tech verticals — analyzing founder profiles, funding stage distributions, and exit pipeline. Identifies three emerging sub-themes and evaluates GBA's competitive position vs. Beijing and Shanghai ecosystems.</p>
+            <span class="research-action" style="opacity:0.5;">Report available soon</span>
+        </div>
+
+        <div class="research-card">
+            <div class="research-meta">
+                <span>2026.04</span>
+                <span class="research-tag">Product Analysis</span>
+            </div>
+            <div class="research-title">AI-Powered Mental Health Applications: Competitive Landscape and Product Strategy</div>
+            <p class="research-desc">Competitive analysis of global AI mental health applications targeting adolescents. Evaluates six leading products across feature completeness, clinical grounding, and user engagement metrics. Proposes a differentiation framework based on the MindLens "Growth Galaxy" model — mapping emotional patterns, cognitive reframing, and safety escalation pathways. Completed for TRAE AI Inventiveness Competition.</p>
+            <a href="https://gz-november.github.io/mindlens/mindlens-nebula.html" class="research-action" target="_blank">View Live Demo →</a>
+        </div>
+
+        <div class="research-card">
+            <div class="research-meta">
+                <span>2026.03</span>
+                <span class="research-tag">Trends</span>
+            </div>
+            <div class="research-title">FinTech 2026: Emerging Themes in Risk, Regulation, and Compliance</div>
+            <p class="research-desc">Forward-looking analysis of three structural shifts reshaping financial technology: (1) the convergence of credit and compliance functions through AI, (2) real-time regulatory reporting infrastructure, and (3) alternative data's growing role in risk scoring. Draws on academic research at HKUST RMBI and practitioner insights from Mortise Capital. Includes scenario analysis for near-term regulatory developments.</p>
+            <span class="research-action" style="opacity:0.5;">Report available soon</span>
+        </div>
+
+    </div>
+
+    <div class="update-note">📌 This section is updated regularly. Each report is based on independent research, open data, and industry practice. For collaboration inquiries, reach out.</div>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand-col"><div class="footer-brand">Jiaqi Zhu</div><p class="footer-desc">HKUST RMBI · Risk Management &amp; Business Intelligence. Data-driven insights for finance, strategy, and beyond.</p></div>
+            <div><h4 class="footer-col-title">Navigate</h4><ul class="footer-links"><li><a href="../index.html#about">About</a></li><li><a href="../index.html#resume">Resume</a></li><li><a href="../index.html#portfolio">Portfolio</a></li><li><a href="../market-recap/index.html">Market Recap</a></li><li><a href="../research/index.html">Research</a></li><li><a href="../blog/index.html">Blog</a></li><li><a href="../library/index.html">Library</a></li></ul></div>
+            <div><h4 class="footer-col-title">Reports</h4><ul class="footer-links"><li style="opacity:0.7;">AI Governance</li><li style="opacity:0.7;">FinTech</li><li style="opacity:0.7;">Market Intelligence</li><li style="opacity:0.7;">Startup Ecosystem</li></ul></div>
+            <div><h4 class="footer-col-title">Connect</h4><ul class="footer-links"><li><a href="https://www.linkedin.com/in/jiaqi-zhu-5a44a4384" target="_blank">LinkedIn</a></li><li><a href="https://github.com/GZ-November" target="_blank">GitHub</a></li><li><a href="mailto:jzhucr@connect.ust.hk">Email</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><span>© 2026 Jiaqi Zhu</span><span>Built with ❤️</span></div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open')));
+    </script>
+</body>
+</html>

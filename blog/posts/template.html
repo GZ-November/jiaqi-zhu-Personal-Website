@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ═══════════ Edit below ═══════════ -->
+    <title>Article Title — Jiaqi Zhu</title>
+    <!-- ═══════════════════════════════════ -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,200;6..72,400;6..72,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-sky: #175C88;
+            --color-coral: #CE5A48;
+            --color-forest: #10362A;
+            --color-paper: #F1EADD;
+            --color-ink: #2B3B48;
+            --color-sand: #D5C4A1;
+            --line-ink: rgba(43, 59, 72, 0.15);
+            --font-serif: 'Newsreader', 'Times New Roman', serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --space-xs: 0.5rem; --space-sm: 1rem; --space-md: 2.5rem; --space-lg: 5rem;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { background-color: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); line-height: 1.6; }
+        ::selection { background: var(--color-coral); color: var(--color-paper); }
+        a { color: var(--color-sky); text-decoration: none; transition: opacity 0.2s ease; }
+        a:hover { opacity: 0.6; }
+
+        /* ── Nav ── */
+        .nav-bar {
+            background-color: var(--color-sky); border-bottom: 1px solid rgba(241,234,221,0.25);
+            position: sticky; top: 0; z-index: 10;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: var(--space-sm) var(--space-md);
+        }
+        .nav-brand { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 500; letter-spacing: -0.02em; color: var(--color-paper); }
+        .nav-back { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-paper); opacity: 0.8; }
+        .nav-back:hover { opacity: 1; }
+
+        /* ── Article Header ── */
+        .article-header {
+            max-width: 720px; margin: 0 auto; padding: var(--space-lg) var(--space-md) var(--space-md);
+        }
+        .article-cat {
+            display: inline-block; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;
+            padding: 4px 12px; border: 1px solid; margin-bottom: var(--space-sm);
+        }
+        /* ═══════════ Change color by category ═══════════ */
+        .cat-ai-product { color: var(--color-sky); border-color: var(--color-sky); }
+        .cat-fintech { color: var(--color-coral); border-color: var(--color-coral); }
+        .cat-strategy { color: var(--color-forest); border-color: var(--color-forest); }
+        .cat-research { color: #8B7355; border-color: #8B7355; }
+        .cat-startup { color: var(--color-ink); border-color: var(--color-ink); }
+        /* ══════════════════════════════════════════════ */
+
+        .article-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: var(--space-sm);
+        }
+        .article-meta {
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;
+            opacity: 0.5; font-weight: 500;
+            display: flex; gap: var(--space-sm); align-items: center;
+        }
+        .article-meta span + span::before {
+            content: '·'; margin-right: var(--space-sm); opacity: 0.4;
+        }
+
+        /* ── Article Body ── */
+        .article-body {
+            max-width: 680px; margin: 0 auto; padding: 0 var(--space-md);
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            line-height: 1.85;
+            color: rgba(43, 59, 72, 0.9);
+        }
+        .article-body h2 {
+            font-family: var(--font-sans);
+            font-size: 1.5rem; font-weight: 600; letter-spacing: -0.01em;
+            color: var(--color-ink); margin: var(--space-lg) 0 var(--space-sm);
+        }
+        .article-body h3 {
+            font-family: var(--font-sans);
+            font-size: 1.15rem; font-weight: 600;
+            color: var(--color-ink); margin: var(--space-md) 0 var(--space-xs);
+        }
+        .article-body p {
+            margin-bottom: var(--space-sm);
+        }
+        .article-body strong {
+            color: var(--color-ink); font-weight: 600;
+        }
+        .article-body code {
+            background-color: rgba(43,59,72,0.06);
+            padding: 2px 6px; border-radius: 3px;
+            font-size: 0.9em; font-family: 'SF Mono', 'Fira Code', monospace;
+        }
+        .article-body pre {
+            background-color: var(--color-ink);
+            color: var(--color-paper);
+            padding: var(--space-sm); border-radius: 4px;
+            overflow-x: auto; font-size: 0.85rem; line-height: 1.6;
+            margin: var(--space-sm) 0;
+        }
+        .article-body pre code {
+            background: none; padding: 0; color: inherit;
+        }
+        .article-body blockquote {
+            border-left: 3px solid var(--color-coral);
+            padding: var(--space-xs) var(--space-sm);
+            margin: var(--space-sm) 0;
+            background-color: rgba(206,90,72,0.05);
+            font-style: italic; opacity: 0.9;
+        }
+        .article-body ul, .article-body ol {
+            margin: var(--space-sm) 0; padding-left: var(--space-md);
+        }
+        .article-body li { margin-bottom: 6px; }
+        .article-body img {
+            max-width: 100%; height: auto; border-radius: 4px;
+            margin: var(--space-sm) 0;
+        }
+        .article-body hr {
+            border: none; border-top: 1px solid var(--line-ink);
+            margin: var(--space-lg) 0;
+        }
+
+        /* ── Article Footer ── */
+        .article-footer {
+            max-width: 680px; margin: var(--space-lg) auto;
+            padding: var(--space-md) var(--space-md);
+            border-top: 1px solid var(--line-ink);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .article-footer a {
+            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;
+            color: var(--color-sky);
+        }
+
+        /* ── Site Footer ── */
+        .site-footer {
+            background-color: var(--color-forest); color: var(--color-sand);
+            padding: var(--space-md);
+            text-align: center; font-size: 0.7rem; opacity: 0.6;
+            text-transform: uppercase; letter-spacing: 0.05em;
+        }
+
+        @media (max-width: 768px) {
+            .article-body { font-size: 1.05rem; }
+            .article-header { padding-top: var(--space-md); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════ Nav ═══════════ -->
+    <div class="nav-bar">
+        <a href="../../index.html" class="nav-brand">Jiaqi Zhu</a>
+        <a href="../index.html" class="nav-back">← Back to Blog</a>
+    </div>
+
+    <!-- ═══════════ Article Header ═══════════ -->
+    <!-- ═══════════ Edit below ═══════════ -->
+    <div class="article-header">
+        <span class="article-cat cat-ai-product">AI Product</span>
+        <h1 class="article-title">Your Article Title Here</h1>
+        <div class="article-meta">
+            <span>2026.07.01</span>
+            <span>~5 min read</span>
+        </div>
+    </div>
+
+    <!-- ═══════════ Article Content ═══════════ -->
+    <!-- ═══════════ Edit body content ═══════════ -->
+    <div class="article-body">
+
+        <p>This is your opening paragraph. Briefly outline what this article covers so readers can quickly decide if it's worth their time.</p>
+
+        <h2>First Section Heading</h2>
+        <p>Write your content here. Use <strong>bold</strong> to emphasize key concepts, or <code>inline code</code> for technical terms.</p>
+        <p>Keep paragraphs well-spaced for comfortable reading. Good typography is itself a form of respect for the reader.</p>
+
+        <blockquote>A pull quote or key insight — use this to highlight an important point or reference someone else's words.</blockquote>
+
+        <h2>Second Section Heading</h2>
+        <p>Continue your content. Use lists to organize information:</p>
+        <ul>
+            <li>First key point</li>
+            <li>Second key point</li>
+            <li>Third key point</li>
+        </ul>
+
+        <h3>Code Example</h3>
+        <pre><code># Sample code snippet
+print("Hello, World!")</code></pre>
+
+        <p>Use code blocks to illustrate technical details or data analysis workflows.</p>
+
+        <hr>
+
+        <p>Concluding paragraph. Revisit the main arguments and give the reader a clear takeaway or call to action.</p>
+
+    </div>
+    <!-- ═══════════════════════════════════ -->
+
+    <!-- Article Navigation -->
+    <div class="article-footer">
+        <a href="../index.html">← All Posts</a>
+        <a href="../../index.html">Home →</a>
+    </div>
+
+    <footer class="site-footer">
+        © 2026 Jiaqi Zhu
+    </footer>
+
+</body>
+</html>

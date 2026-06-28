@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library — Jiaqi Zhu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,200;6..72,400;6..72,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-sky: #175C88; --color-coral: #CE5A48; --color-forest: #10362A;
+            --color-paper: #F1EADD; --color-ink: #2B3B48; --color-sand: #D5C4A1;
+            --line-ink: rgba(43,59,72,0.2); --line-paper: rgba(241,234,221,0.25);
+            --font-serif: 'Newsreader','Times New Roman',serif;
+            --font-sans: 'Inter',-apple-system,sans-serif;
+            --space-xs: 0.5rem; --space-sm: 1rem; --space-md: 2.5rem; --space-lg: 5rem; --space-xl: 8vh;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+        body { background:var(--color-paper); color:var(--color-ink); font-family:var(--font-sans); line-height:1.5; }
+        ::selection { background:var(--color-coral); color:var(--color-paper); }
+        a { color:inherit; text-decoration:none; transition:opacity 0.2s; }
+        a:hover { opacity:0.6; }
+
+        .nav-bar { background:var(--color-sky); border-bottom:1px solid var(--line-paper); position:sticky; top:0; z-index:10; display:flex; justify-content:space-between; align-items:center; padding:var(--space-sm) var(--space-md); }
+        .nav-brand { font-family:var(--font-serif); font-size:1.5rem; font-weight:500; letter-spacing:-0.02em; color:var(--color-paper); }
+        .nav-links { display:flex; gap:var(--space-md); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; font-weight:500; }
+        .nav-links a { color:var(--color-paper); opacity:0.7; }
+        .nav-links a:hover,.nav-links a.active-link { opacity:1; color:var(--color-sand); }
+        .mobile-menu-btn { display:none; background:none; border:none; color:var(--color-paper); font-size:1.5rem; cursor:pointer; }
+
+        .page-header { background:var(--color-forest); color:var(--color-sand); padding:var(--space-xl) var(--space-md); }
+        .page-header h1 { font-family:var(--font-serif); font-size:clamp(3rem,7vw,6rem); font-weight:400; letter-spacing:-0.03em; line-height:1; margin-bottom:var(--space-sm); }
+        .page-header p { font-size:1rem; opacity:0.8; max-width:48ch; line-height:1.6; }
+
+        .library-content { padding:var(--space-lg) var(--space-md); max-width:900px; margin:0 auto; }
+
+        .section-block { margin-bottom:var(--space-lg); }
+        .section-block h2 { font-family:var(--font-serif); font-size:2.5rem; font-weight:400; letter-spacing:-0.02em; margin-bottom:var(--space-xs); }
+        .section-block .section-desc { font-size:0.8rem; opacity:0.5; margin-bottom:var(--space-md); text-transform:uppercase; letter-spacing:0.08em; }
+
+        .item-card { padding:var(--space-sm) 0; border-bottom:1px solid var(--line-ink); display:grid; grid-template-columns:1fr auto; gap:var(--space-sm); align-items:start; transition:all 0.2s; }
+        .item-card:hover { padding-left:8px; }
+        .item-card:last-child { border-bottom:none; padding-bottom:0; }
+        .item-card.reading { opacity:0.5; }
+        .item-card.reading:hover { opacity:1; }
+        .item-title { font-family:var(--font-serif); font-size:1.3rem; letter-spacing:-0.01em; }
+        .item-meta { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; opacity:0.5; margin-bottom:4px; }
+        .item-notes { font-size:0.8rem; opacity:0.7; line-height:1.6; max-width:56ch; margin-top:4px; }
+        .item-status { font-size:0.6rem; text-transform:uppercase; letter-spacing:0.1em; font-weight:600; padding:3px 10px; border:1px solid; white-space:nowrap; }
+        .status-done { color:var(--color-forest); border-color:var(--color-forest); }
+        .status-reading { color:var(--color-sky); border-color:var(--color-sky); }
+        .status-queue { color:var(--color-ink); border-color:var(--color-ink); opacity:0.5; }
+
+        .counter { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; opacity:0.4; margin-top:var(--space-xs); }
+
+        .footer { background:var(--color-forest); color:var(--color-sand); padding:var(--space-lg) var(--space-md) var(--space-md); }
+        .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:var(--space-md); margin-bottom:var(--space-lg); }
+        .footer-brand { font-family:var(--font-serif); font-size:2rem; margin-bottom:var(--space-sm); color:var(--color-paper); }
+        .footer-desc { font-size:0.8rem; max-width:30ch; opacity:0.8; }
+        .footer-col-title { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--color-paper); margin-bottom:var(--space-sm); font-weight:600; }
+        .footer-links { list-style:none; display:flex; flex-direction:column; gap:8px; }
+        .footer-links li { font-size:0.8rem; opacity:0.8; }
+        .footer-bottom { display:flex; justify-content:space-between; padding-top:var(--space-md); border-top:1px solid rgba(213,196,161,0.2); font-size:0.7rem; opacity:0.6; text-transform:uppercase; letter-spacing:0.05em; }
+
+        @media(max-width:768px){
+            .nav-links{display:none;}
+            .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(23,92,136,0.95);padding:var(--space-md);gap:var(--space-sm);}
+            .mobile-menu-btn{display:block;}
+            .item-card{grid-template-columns:1fr;}
+            .item-status{justify-self:start;}
+            .footer-grid{grid-template-columns:1fr 1fr;}
+            .footer-brand-col{grid-column:1/-1;}
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-bar">
+        <a href="../index.html" class="nav-brand">Jiaqi Zhu</a>
+        <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../index.html#about">About</a>
+            <a href="../index.html#resume">Resume</a>
+            <a href="../index.html#portfolio">Portfolio</a>
+            <a href="../market-recap/index.html">Market Recap</a>
+            <a href="../research/index.html">Research</a>
+            <a href="../blog/index.html">Blog</a>
+            <a href="../library/index.html" class="active-link">Library</a>
+            <a href="../index.html#contact">Contact</a>
+        </div>
+    </div>
+
+    <div class="page-header">
+        <h1>Library</h1>
+        <p>Tracking what I'm learning — coursework, readings, and references that shape how I think. Just getting started.</p>
+    </div>
+
+    <div class="library-content">
+
+        <!-- ═══════════ Books ═══════════ -->
+        <div class="section-block">
+            <h2>Books</h2>
+            <p class="section-desc">What I've read and what I'm reading</p>
+
+            <!-- ── Copy this block to add a book ── -->
+            <!-- ── Copy until here ── -->
+
+            <p style="font-family:var(--font-serif); font-size:1.2rem; opacity:0.4; padding:var(--space-md) 0;">
+                Nothing here yet. Reading list coming soon.
+            </p>
+        </div>
+
+        <!-- ═══════════ Courses & Learning ═══════════ -->
+        <div class="section-block">
+            <h2>Courses &amp; Learning</h2>
+            <p class="section-desc">Formal coursework and self-study</p>
+
+            <div class="item-card">
+                <div>
+                    <div class="item-meta">HKUST · RMBI Core</div>
+                    <div class="item-title">Corporate Finance</div>
+                    <p class="item-notes">NPV, IRR, WACC, capital structure theory. Foundation for valuation work at Mortise Capital.</p>
+                </div>
+                <span class="item-status status-done">Completed</span>
+            </div>
+
+            <div class="item-card">
+                <div>
+                    <div class="item-meta">HKUST · RMBI Core</div>
+                    <div class="item-title">Data Mining &amp; Big Data Analytics</div>
+                    <p class="item-notes">Classification, regression, clustering. Applied Python and Spark. Directly relevant to alternative credit signal analysis.</p>
+                </div>
+                <span class="item-status status-done">Completed</span>
+            </div>
+
+            <div class="item-card">
+                <div>
+                    <div class="item-meta">HKUST · RMBI Core</div>
+                    <div class="item-title">Financial &amp; Management Accounting</div>
+                    <p class="item-notes">Financial statement analysis, cost behavior, budgeting. Essential for business analysis work.</p>
+                </div>
+                <span class="item-status status-done">Completed</span>
+            </div>
+
+            <div class="item-card">
+                <div>
+                    <div class="item-meta">HKUST · RMBI Core</div>
+                    <div class="item-title">Operations Management</div>
+                    <p class="item-notes">Process analysis, supply chain design, quality management. Applied directly in Tianyun workflow diagnostics.</p>
+                </div>
+                <span class="item-status status-done">Completed</span>
+            </div>
+
+            <div class="item-card">
+                <div>
+                    <div class="item-meta">HKUST · RMBI Core</div>
+                    <div class="item-title">Business Statistics &amp; Math for Economists</div>
+                    <p class="item-notes">Probability, regression, optimization. Quantitative backbone for risk modeling and market analysis.</p>
+                </div>
+                <span class="item-status status-done">Completed</span>
+            </div>
+
+            <p class="counter">5 courses tracked</p>
+        </div>
+
+        <!-- ═══════════ News & Periodicals ═══════════ -->
+        <div class="section-block">
+            <h2>News &amp; Periodicals</h2>
+            <p class="section-desc">Newsletters, weeklies, and commentary I follow regularly</p>
+
+            <!-- ── Copy this block to add an entry ── -->
+            <div class="item-card">
+                <div>
+                    <div class="item-meta">Weekly · Mortise Capital</div>
+                    <div class="item-title">Weekly Market Recap</div>
+                    <div class="item-meta">Mortise Capital Research</div>
+                    <p class="item-notes">Weekly global macro and sector rotation analysis. I write and circulate this each weekend — latest: AI de-rating, Fed repricing, oil relief cushion.</p>
+                </div>
+                <span class="item-status status-reading">Ongoing</span>
+            </div>
+            <!-- ── Copy until here ── -->
+
+            <p style="font-family:var(--font-serif); font-size:1.2rem; opacity:0.4; padding:var(--space-sm) 0 var(--space-md);">
+                More to come — tracking what I read each week.
+            </p>
+        </div>
+
+        <!-- ═══════════ Papers & Reports ═══════════ -->
+        <div class="section-block">
+            <h2>Papers &amp; Reports</h2>
+            <p class="section-desc">Key readings that influenced my thinking</p>
+
+            <p style="font-family:var(--font-serif); font-size:1.2rem; opacity:0.4; padding:var(--space-md) 0;">
+                Nothing here yet. Will add as I read.
+            </p>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand-col"><div class="footer-brand">Jiaqi Zhu</div><p class="footer-desc">HKUST RMBI · Risk Management &amp; Business Intelligence.</p></div>
+            <div><h4 class="footer-col-title">Navigate</h4><ul class="footer-links"><li><a href="../index.html#about">About</a></li><li><a href="../index.html#resume">Resume</a></li><li><a href="../index.html#portfolio">Portfolio</a></li><li><a href="../market-recap/index.html">Market Recap</a></li><li><a href="../research/index.html">Research</a></li><li><a href="../blog/index.html">Blog</a></li><li><a href="../library/index.html">Library</a></li></ul></div>
+            <div><h4 class="footer-col-title">Sections</h4><ul class="footer-links"><li><a href="../market-recap/index.html">Weekly Recap</a></li><li><a href="../research/index.html">Reports</a></li><li><a href="../blog/index.html">Blog</a></li><li><a href="../library/index.html">Library</a></li></ul></div>
+            <div><h4 class="footer-col-title">Connect</h4><ul class="footer-links"><li><a href="https://www.linkedin.com/in/jiaqi-zhu-5a44a4384" target="_blank">LinkedIn</a></li><li><a href="https://github.com/GZ-November" target="_blank">GitHub</a></li><li><a href="mailto:jzhucr@connect.ust.hk">Email</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><span>© 2026 Jiaqi Zhu</span><span>Built with ❤️</span></div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open')));
+    </script>
+</body>
+</html>

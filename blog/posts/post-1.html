@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>如何构建一个高性能的 React 应用 — Jiaqi Zhu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,200;6..72,400;6..72,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-sky: #175C88; --color-coral: #CE5A48; --color-forest: #10362A;
+            --color-paper: #F1EADD; --color-ink: #2B3B48; --color-sand: #D5C4A1;
+            --line-ink: rgba(43,59,72,0.15);
+            --font-serif: 'Newsreader','Times New Roman',serif;
+            --font-sans: 'Inter',-apple-system,sans-serif;
+            --space-xs: 0.5rem; --space-sm: 1rem; --space-md: 2.5rem; --space-lg: 5rem;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+        body { background:var(--color-paper); color:var(--color-ink); font-family:var(--font-sans); line-height:1.6; }
+        ::selection { background:var(--color-coral); color:var(--color-paper); }
+        a { color:var(--color-sky); text-decoration:none; transition:opacity 0.2s; }
+        a:hover { opacity:0.6; }
+        .nav-bar { background:var(--color-sky); border-bottom:1px solid rgba(241,234,221,0.25); position:sticky; top:0; z-index:10; display:flex; justify-content:space-between; align-items:center; padding:var(--space-sm) var(--space-md); }
+        .nav-brand { font-family:var(--font-serif); font-size:1.5rem; font-weight:500; letter-spacing:-0.02em; color:var(--color-paper); }
+        .nav-back { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--color-paper); opacity:0.8; }
+        .article-header { max-width:720px; margin:0 auto; padding:var(--space-lg) var(--space-md) var(--space-md); }
+        .article-cat { display:inline-block; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.1em; font-weight:600; padding:4px 12px; border:1px solid var(--color-sky); color:var(--color-sky); margin-bottom:var(--space-sm); }
+        .article-title { font-family:var(--font-serif); font-size:clamp(2.5rem,5vw,4rem); font-weight:400; letter-spacing:-0.03em; line-height:1.1; margin-bottom:var(--space-sm); }
+        .article-meta { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; opacity:0.5; font-weight:500; display:flex; gap:var(--space-sm); align-items:center; }
+        .article-body { max-width:680px; margin:0 auto; padding:0 var(--space-md); font-family:var(--font-serif); font-size:1.15rem; line-height:1.85; color:rgba(43,59,72,0.9); }
+        .article-body h2 { font-family:var(--font-sans); font-size:1.5rem; font-weight:600; letter-spacing:-0.01em; color:var(--color-ink); margin:var(--space-lg) 0 var(--space-sm); }
+        .article-body h3 { font-family:var(--font-sans); font-size:1.15rem; font-weight:600; color:var(--color-ink); margin:var(--space-md) 0 var(--space-xs); }
+        .article-body p { margin-bottom:var(--space-sm); }
+        .article-body strong { color:var(--color-ink); font-weight:600; }
+        .article-body code { background:rgba(43,59,72,0.06); padding:2px 6px; border-radius:3px; font-size:0.9em; font-family:'SF Mono','Fira Code',monospace; }
+        .article-body pre { background:var(--color-ink); color:var(--color-paper); padding:var(--space-sm); border-radius:4px; overflow-x:auto; font-size:0.85rem; line-height:1.6; margin:var(--space-sm) 0; }
+        .article-body pre code { background:none; padding:0; color:inherit; }
+        .article-body blockquote { border-left:3px solid var(--color-coral); padding:var(--space-xs) var(--space-sm); margin:var(--space-sm) 0; background:rgba(206,90,72,0.05); font-style:italic; opacity:0.9; }
+        .article-body ul,.article-body ol { margin:var(--space-sm) 0; padding-left:var(--space-md); }
+        .article-body li { margin-bottom:6px; }
+        .article-body hr { border:none; border-top:1px solid var(--line-ink); margin:var(--space-lg) 0; }
+        .article-footer { max-width:680px; margin:var(--space-lg) auto; padding:var(--space-md) var(--space-md); border-top:1px solid var(--line-ink); display:flex; justify-content:space-between; align-items:center; }
+        .article-footer a { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; font-weight:600; color:var(--color-sky); }
+        .site-footer { background:var(--color-forest); color:var(--color-sand); padding:var(--space-md); text-align:center; font-size:0.7rem; opacity:0.6; text-transform:uppercase; letter-spacing:0.05em; }
+        @media(max-width:768px){ .article-body{font-size:1.05rem;} .article-header{padding-top:var(--space-md);} }
+    </style>
+</head>
+<body>
+
+    <div class="nav-bar">
+        <a href="../../index.html" class="nav-brand">Jiaqi Zhu</a>
+        <a href="../index.html" class="nav-back">← Back to Blog</a>
+    </div>
+
+    <div class="article-header">
+        <span class="article-cat">Engineering</span>
+        <h1 class="article-title">如何构建一个高性能的 React 应用</h1>
+        <div class="article-meta">
+            <span>2024.12.15</span>
+            <span>约 8 分钟阅读</span>
+        </div>
+    </div>
+
+    <div class="article-body">
+
+        <p>在构建现代 Web 应用时，性能优化往往容易被忽视——直到用户开始抱怨页面卡顿、交互延迟。本文分享我在多个项目中积累的 React 性能优化实战经验，从渲染优化到状态管理，涵盖常见的问题场景和解决方案。</p>
+
+        <h2>1. 识别性能瓶颈</h2>
+        <p>在动手优化之前，首先要找到真正的瓶颈所在。React 提供了两个核心工具：</p>
+        <ul>
+            <li><strong>React DevTools Profiler</strong> — 可视化组件渲染时间和次数</li>
+            <li><strong>Chrome Performance Tab</strong> — 分析帧率和长任务</li>
+        </ul>
+        <p>不要凭直觉优化。数据会告诉你哪个组件渲染次数最多、哪个 Effect 耗时最长。</p>
+
+        <h2>2. 减少不必要的重渲染</h2>
+        <p>最常见的性能问题来自组件不必要的重复渲染。以下是几种有效的解决手段：</p>
+
+        <h3>React.memo</h3>
+        <p>当父组件更新时，子组件即使 props 没有变化也会重新渲染。使用 <code>React.memo</code> 包裹纯展示组件可以避免这种情况：</p>
+        <pre><code>const ExpensiveList = React.memo(({ items }) => {
+  return items.map(item => &lt;Item key={item.id} {...item} /&gt;);
+});</code></pre>
+
+        <h3>useMemo 与 useCallback</h3>
+        <p><code>useMemo</code> 缓存计算结果，<code>useCallback</code> 缓存函数引用。它们对于传递给 memo 组件的 props 尤为重要。</p>
+        <blockquote>注意：不要滥用。只在确实存在性能问题时使用，否则会增加代码复杂度和内存开销。</blockquote>
+
+        <h2>3. 状态管理优化</h2>
+        <p>状态放在哪里，对性能影响很大。一个常见的反模式是将所有状态提升到顶层组件，导致整个子树不必要的重渲染。</p>
+        <p>推荐的做法是：</p>
+        <ul>
+            <li><strong>状态下沉</strong> — 将状态放到尽可能靠近使用它的组件</li>
+            <li><strong>拆分 Context</strong> — 将一个大的 Context 拆分为多个小的，减少订阅范围</li>
+            <li><strong>外部状态库</strong> — 对于高频更新的状态（如动画、表单），考虑使用 Zustand 或 Jotai</li>
+        </ul>
+
+        <h2>4. 代码分割与懒加载</h2>
+        <p>对于大型应用，首屏加载速度至关重要。使用 <code>React.lazy</code> 和 <code>Suspense</code> 进行路由级别的代码分割：</p>
+        <pre><code>const Dashboard = React.lazy(() => import('./Dashboard'));
+
+function App() {
+  return (
+    &lt;Suspense fallback={&lt;Loading /&gt;}&gt;
+      &lt;Dashboard /&gt;
+    &lt;/Suspense&gt;
+  );
+}</code></pre>
+
+        <h2>5. 列表虚拟化</h2>
+        <p>当渲染成千上万条数据时，DOM 节点数量会严重影响性能。<code>react-window</code> 或 <code>@tanstack/virtual</code> 只渲染可视区域内的元素，大幅减少 DOM 开销。</p>
+
+        <hr>
+
+        <p>性能优化是一个持续迭代的过程。最重要的原则是：<strong>测量，然后优化</strong>。不要过早优化，也不要忽视用户的真实体验。希望这些经验对你的项目有所帮助。</p>
+
+    </div>
+
+    <div class="article-footer">
+        <a href="../index.html">← All Posts</a>
+        <a href="../../index.html">Home →</a>
+    </div>
+
+    <footer class="site-footer">© 2026 Jiaqi Zhu</footer>
+
+</body>
+</html>

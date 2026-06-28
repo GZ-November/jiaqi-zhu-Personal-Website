@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>X-Bank AI Governance & Compliance Implementation Blueprint</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ambient-layer" aria-hidden="true"></div>
+  <header class="topbar">
+    <div class="topbar-brand">
+      <span class="brand-mark"></span>
+      <span>X-Bank Governance Command Center</span>
+    </div>
+    <nav class="topbar-nav" aria-label="Section navigation">
+      <a href="#hero">Opening</a>
+      <a href="#risk-universe">Risk Universe</a>
+      <a href="#quantification">Quantification</a>
+      <a href="#lifecycle">Lifecycle</a>
+      <a href="#control-stack">Control Stack</a>
+      <a href="#operating-model">Operating Model</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#executive-dashboard">Dashboard</a>
+    </nav>
+  </header>
+
+  <aside id="controlSpine" class="control-spine" aria-live="polite">
+    <p class="eyebrow">Control Spine</p>
+    <p class="spine-title" id="spineSection">Opening Context</p>
+    <div class="spine-grid">
+      <div class="spine-item">
+        <p class="label">Risk</p>
+        <p id="spineRisk">Cross-domain AI risk concentration not yet quantified.</p>
+      </div>
+      <div class="spine-item">
+        <p class="label">Control</p>
+        <p id="spineControl">Lifecycle controls and challenge gates are being initialized.</p>
+      </div>
+      <div class="spine-item">
+        <p class="label">Owner</p>
+        <p id="spineOwner">AI Governance Committee + Business AI Owner.</p>
+      </div>
+      <div class="spine-item">
+        <p class="label">Evidence</p>
+        <p id="spineEvidence">Decision logs, validation packs, and incident chronology.</p>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <section class="pdf-nav-card print-only" aria-label="PDF navigation">
+      <p class="eyebrow">Navigation</p>
+      <h2>X-Bank AI Governance & Compliance Implementation Blueprint</h2>
+      <p class="micro-copy">Click any module below to jump to the section in PDF reader.</p>
+      <div class="pdf-nav-links">
+        <a href="#hero">1. Opening</a>
+        <a href="#risk-universe">2. Risk Universe</a>
+        <a href="#quantification">3. Quantification Engine</a>
+        <a href="#lifecycle">4. Lifecycle Governance</a>
+        <a href="#control-stack">5. Control Stack</a>
+        <a href="#operating-model">6. Operating Model</a>
+        <a href="#roadmap">7. Roadmap</a>
+        <a href="#executive-dashboard">8. Executive Dashboard</a>
+      </div>
+    </section>
+
+    <section id="hero" class="panel hero-panel reveal">
+      <div class="hero-network" aria-hidden="true"></div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">X-Bank Governance Command Center</p>
+          <h1>Defining the Next Generation of Responsible Financial AI</h1>
+          <p class="lead">A lifecycle-based blueprint for AI risk visibility, control, and scalable compliance.</p>
+          <p class="thesis-line">X-Bank does not need to eliminate all AI risk. It needs to make AI risk visible, measurable, governable, and scalable.</p>
+          <button id="enterControlRoom" class="cta-button" type="button">Enter the Control Room</button>
+        </div>
+        <div class="hero-side">
+          <div class="risk-pulse-grid">
+            <article class="risk-pulse-card" tabindex="0" data-teaser="Bias can stay hidden even when parity ratios look compliant.">
+              <h3>Hidden discrimination</h3>
+              <p>Credit and pricing models can create profit-side bias that standard fairness checks miss.</p>
+            </article>
+            <article class="risk-pulse-card" tabindex="0" data-teaser="Prompt leakage and weak lineage controls expand privacy exposure.">
+              <h3>Data leakage</h3>
+              <p>GenAI workflows can exfiltrate sensitive customer context across channels and vendors.</p>
+            </article>
+            <article class="risk-pulse-card" tabindex="0" data-teaser="Opaque denials raise both conduct risk and remediation burden.">
+              <h3>Black-box decisions</h3>
+              <p>Low explainability weakens complaint handling, audit defense, and adverse action transparency.</p>
+            </article>
+            <article class="risk-pulse-card" tabindex="0" data-teaser="Cross-jurisdiction requirements now demand auditable lifecycle controls.">
+              <h3>Regulatory pressure</h3>
+              <p>NIST, EU AI Act, and domestic GenAI obligations require governance by design, not post-fix.</p>
+            </article>
+          </div>
+          <div class="hero-kpi-ticker" id="heroKpiTicker" aria-live="polite">
+            <span><strong>61</strong> AI use cases in production</span>
+            <span><strong>14</strong> high-risk models under monthly challenge</span>
+            <span><strong>93%</strong> decision traceability coverage</span>
+            <span><strong>38%</strong> residual EAL reduction after controls</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="risk-universe" class="panel reveal">
+      <header class="section-head">
+        <p class="eyebrow">Risk Universe</p>
+        <h2>Where the Risk Actually Starts</h2>
+        <p>AI exposure is distributed across data, models, decisions, processes, third parties, and regulation.</p>
+      </header>
+
+      <div class="control-row">
+        <div class="pill-group" id="riskViewMode" role="tablist" aria-label="Risk universe perspective">
+          <button class="pill active" data-view="business">By business line</button>
+          <button class="pill" data-view="ai">By AI type</button>
+          <button class="pill" data-view="regulatory">By regulatory criticality</button>
+        </div>
+        <div class="pill-group" id="businessFilter" role="tablist" aria-label="Business line filter">
+          <button class="pill active" data-business="All">All lines</button>
+          <button class="pill" data-business="Lending">Lending</button>
+          <button class="pill" data-business="Fraud">Fraud</button>
+          <button class="pill" data-business="AML/KYC">AML/KYC</button>
+          <button class="pill" data-business="Customer Service">Customer Service</button>
+          <button class="pill" data-business="Compliance">Compliance</button>
+          <button class="pill" data-business="Operations">Operations</button>
+        </div>
+      </div>
+
+      <div class="risk-layout">
+        <article class="glass-card">
+          <h3>Business-Line Exposure Grid</h3>
+          <div id="businessLineExposureGrid" class="exposure-grid"></div>
+        </article>
+
+        <article class="glass-card wide">
+          <h3>Risk Constellation Map</h3>
+          <p class="micro-copy">Click a node to inspect risk source, controls, owner, and evidence requirements.</p>
+          <div id="riskConstellationMap" class="risk-constellation-map" role="list"></div>
+        </article>
+
+        <article class="glass-card">
+          <h3>Inherent vs Residual Risk</h3>
+          <div id="riskQuadrant" class="risk-quadrant"></div>
+          <h4>High-Risk Use Cases</h4>
+          <div id="highRiskCards" class="high-risk-cards"></div>
+        </article>
+      </div>
+
+      <aside id="useCaseRiskDrawer" class="side-drawer" aria-live="polite">
+        <button id="closeRiskDrawer" class="ghost-button" type="button">Close</button>
+        <h3 id="drawerUseCaseName">Select a use case</h3>
+        <p id="drawerDefinition" class="micro-copy">Risk detail will appear here.</p>
+        <div class="drawer-block">
+          <p class="label">Risk</p>
+          <ul id="drawerRiskDrivers"></ul>
+        </div>
+        <div class="drawer-block">
+          <p class="label">Control</p>
+          <ul id="drawerControls"></ul>
+        </div>
+        <div class="drawer-block">
+          <p class="label">Owner</p>
+          <ul id="drawerOwners"></ul>
+        </div>
+        <div class="drawer-block">
+          <p class="label">Evidence</p>
+          <ul id="drawerEvidence"></ul>
+        </div>
+      </aside>
+    </section>
+
+    <section id="quantification" class="panel reveal">
+      <header class="section-head">
+        <p class="eyebrow">Quantification Engine</p>
+        <h2>From Concern to Loss</h2>
+        <p>Risk becomes manageable only when it becomes measurable.</p>
+      </header>
+
+      <div class="control-row">
+        <div class="pill-group" id="quantViewMode" role="tablist" aria-label="Quantification perspective">
+          <button class="pill active" data-view="single">Single use-case view</button>
+          <button class="pill" data-view="portfolio">Portfolio view</button>
+        </div>
+      </div>
+
+      <div class="quant-controls">
+        <label>
+          Use case
+          <select id="quantUseCaseSelect"></select>
+        </label>
+        <label>
+          Scenario family
+          <select id="quantScenarioSelect"></select>
+        </label>
+        <button id="resetQuantControls" class="ghost-button" type="button">Reset to baseline</button>
+      </div>
+
+      <div class="quant-layout">
+        <article class="glass-card">
+          <h3>Model</h3>
+          <p class="formula">Expected Annual Loss = P<sub>annual</sub> x L<sub>gross</sub> x (1 - CE)</p>
+          <p class="micro-copy">P<sub>annual</sub> = 0.4 x internal + 0.4 x expert + 0.2 x external</p>
+          <p class="micro-copy">CE = 0.35D + 0.25P + 0.20R + 0.20G</p>
+          <div class="waterfall" id="lossWaterfallChart"></div>
+        </article>
+
+        <article class="glass-card">
+          <h3>Control Effectiveness Levers</h3>
+          <div id="controlSliderGroup" class="slider-group">
+            <label>Fairness controls <span data-output="fairness">72%</span><input type="range" min="0" max="100" value="72" data-slider="fairness" /></label>
+            <label>Explainability controls <span data-output="explainability">68%</span><input type="range" min="0" max="100" value="68" data-slider="explainability" /></label>
+            <label>Privacy controls <span data-output="privacy">70%</span><input type="range" min="0" max="100" value="70" data-slider="privacy" /></label>
+            <label>Monitoring controls <span data-output="monitoring">66%</span><input type="range" min="0" max="100" value="66" data-slider="monitoring" /></label>
+            <label>Governance controls <span data-output="governance">74%</span><input type="range" min="0" max="100" value="74" data-slider="governance" /></label>
+          </div>
+        </article>
+
+        <article class="glass-card">
+          <h3>Loss Summary</h3>
+          <div class="kpi-grid tight" id="quantSummaryCards">
+            <div class="kpi-card"><p>Annual Probability</p><strong id="annualProbability">0.0%</strong></div>
+            <div class="kpi-card"><p>Gross Loss</p><strong id="grossLoss">$0.0M</strong></div>
+            <div class="kpi-card"><p>Control Effectiveness</p><strong id="controlEffectiveness">0.0%</strong></div>
+            <div class="kpi-card"><p>Residual EAL</p><strong id="residualEal">$0.0M</strong></div>
+            <div class="kpi-card"><p>Stress Loss (95%)</p><strong id="stressLoss">$0.0M</strong></div>
+            <div class="kpi-card"><p>RAG</p><strong id="residualRag">Amber</strong></div>
+          </div>
+          <div class="distribution-chart" id="stressLossDistributionChart"></div>
+        </article>
+      </div>
+
+      <article id="quantPortfolioPanel" class="glass-card portfolio-panel"></article>
+    </section>
+
+    <section id="lifecycle" class="panel reveal">
+      <header class="section-head">
+        <p class="eyebrow">Lifecycle Governance</p>
+        <h2>From Data to Decision</h2>
+        <p>Governance must follow the full AI lifecycle, not just model approval.</p>
+      </header>
+
+      <div id="lifecycleRail" class="lifecycle-rail" role="tablist" aria-label="Lifecycle stages"></div>
+
+      <article class="glass-card lifecycle-detail" id="lifecycleDetailPanel">
+        <div class="lifecycle-head">
+          <h3 id="lifecycleStageTitle">Select a stage</h3>
+          <p id="lifecycleProgress" class="chip">Stage 0 / 8</p>
+        </div>
+        <p id="lifecycleStageGoal" class="micro-copy"></p>
+        <div class="gate-panel">
+          <p class="label">Approval Gate</p>
+          <p id="lifecycleApprovalGate" class="gate-title">No gate selected</p>
+          <p id="lifecycleGateOwner" class="micro-copy"></p>
+          <div class="gate-columns">
+            <div>
+              <p class="label">Go Criteria</p>
+              <ul id="lifecycleGoCriteria"></ul>
+            </div>
+            <div>
+              <p class="label">No-Go / Fail Conditions</p>
+              <ul id="lifecycleNoGoConditions"></ul>
+            </div>
+          </div>
+        </div>
+        <div class="detail-columns">
+          <div>
+            <p class="label">Risk</p>
+            <ul id="lifecycleRisks"></ul>
+          </div>
+          <div>
+            <p class="label">Control</p>
+            <ul id="lifecycleControls"></ul>
+          </div>
+          <div>
+            <p class="label">Owner</p>
+            <ul id="lifecycleOwners"></ul>
+          </div>
+          <div>
+            <p class="label">Evidence</p>
+            <ul id="lifecycleArtifacts"></ul>
+          </div>
+        </div>
+        <div id="lifecycleEvidence" class="evidence-row"></div>
+      </article>
+    </section>
+
+    <section id="control-stack" class="panel reveal">
+      <header class="section-head">
+        <p class="eyebrow">Control Stack</p>
+        <h2>What Actually Makes the System Trustworthy</h2>
+        <p>Controls must be technical, managerial, and evidence-generating.</p>
+      </header>
+
+      <div class="layered-architecture" id="layeredControlArchitecture">
+        <div>Governance & Human Oversight</div>
+        <div>Auditability & Traceability</div>
+        <div>GenAI-Specific Controls</div>
+        <div>Privacy & Secure Collaboration</div>
+        <div>Fairness + Explainability</div>
+      </div>
+
+      <div class="control-row">
+        <div class="pill-group" id="controlDomainTabs" role="tablist" aria-label="Control domain tabs"></div>
+      </div>
+
+      <div class="control-layout">
+        <div id="controlCardGrid" class="control-card-grid"></div>
+        <aside id="controlDetailDrawer" class="glass-card control-drawer">
+          <h3 id="controlDetailName">Select a control</h3>
+          <p id="controlDetailDescription" class="micro-copy"></p>
+          <div class="drawer-block"><p class="label">Risk</p><ul id="controlMitigatedRisks"></ul></div>
+          <div class="drawer-block"><p class="label">Control</p><ul id="controlLifecycleStages"></ul></div>
+          <div class="drawer-block"><p class="label">Owner</p><ul id="controlOwners"></ul></div>
+          <div class="drawer-block"><p class="label">Evidence</p><ul id="controlEvidence"></ul></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="operating-model" class="panel reveal">
+      <header class="section-head">
+        <p class="eyebrow">Operating Model</p>
+        <h2>Who Governs What</h2>
+        <p>Governance fails when ownership is ambiguous.</p>
+      </header>
+
+      <div class="control-row">
+        <div class="pill-group" id="operatingViewToggle" role="tablist" aria-label="Operating model perspective">
+          <button class="pill active" data-view="committee">Committee view</button>
+          <button class="pill" data-view="defense">Three-lines-of-defense</button>
+          <button class="pill" data-view="lifecycle">Lifecycle-owner view</button>
+        </div>
+      </div>
+
+      <div class="operating-layout">
+        <article class="glass-card">
+          <h3>Governance Circuit</h3>
+          <div id="governanceCircuitDiagram" class="governance-circuit"></div>
+        </article>
+        <article class="glass-card">
+          <h3>Role-Responsibility Matrix</h3>
+          <div id="roleResponsibilityMatrix" class="role-matrix"></div>
+        </article>
+        <aside class="glass-card" id="roleDetailPanel">
+          <h3 id="roleDetailName">Select a governance node</h3>
+          <p id="roleDetailSummary" class="micro-copy"></p>
+          <div class="drawer-block"><p class="label">Decision Rights</p><ul id="roleDecisionRights"></ul></div>
+          <div class="drawer-block"><p class="label">Escalation</p><ul id="roleEscalation"></ul></div>
+          <div class="drawer-block"><p class="label">Owned Artifacts</p><ul id="roleArtifacts"></ul></div>
+        </aside>
+      </div>
+
+      <article class="glass-card decision-rights-card">
+        <h3>Decision-Rights Matrix</h3>
+        <table class="leaderboard decision-rights-table">
+          <thead>
+            <tr>
+              <th>Decision Action</th>
+              <th>Board</th>
+              <th>AI Gov Com.</th>
+              <th>Model Risk</th>
+              <th>Business Owner</th>
+              <th>Internal Audit</th>
+            </tr>
+          </thead>
+          <tbody id="decisionRightsMatrix"></tbody>
+        </table>
+      </article>
+    </section>
+
+    <section id="roadmap" class="panel reveal">
+      <header class="section-head">
+        <p class="eyebrow">Roadmap</p>
+        <h2>From Paper to Production</h2>
+        <p>Execution matters more than policy language.</p>
+      </header>
+
+      <div id="transformationRoadmap" class="roadmap-track"></div>
+
+      <article class="glass-card" id="phaseDetailPanel">
+        <div class="lifecycle-head">
+          <h3 id="phaseDetailTitle">Select a phase</h3>
+          <p id="phaseDetailHorizon" class="chip"></p>
+        </div>
+        <div class="detail-columns">
+          <div>
+            <p class="label">Risk</p>
+            <ul id="phaseObjectives"></ul>
+          </div>
+          <div>
+            <p class="label">Control</p>
+            <ul id="phaseActions"></ul>
+          </div>
+          <div>
+            <p class="label">Owner</p>
+            <ul id="phaseOwners"></ul>
+          </div>
+          <div>
+            <p class="label">Evidence</p>
+            <ul id="phaseDeliverables"></ul>
+          </div>
+        </div>
+        <div class="metrics-row">
+          <div><p class="label">Success KPIs</p><ul id="phaseMetrics"></ul></div>
+          <div><p class="label">Dependencies</p><ul id="phaseDependencies"></ul></div>
+        </div>
+      </article>
+
+      <div id="maturityScoreStrip" class="maturity-strip"></div>
+      <div id="regulatoryTimelineStrip" class="regulatory-strip"></div>
+
+      <article class="glass-card traceability-card">
+        <h3>Regulation-to-Control Traceability</h3>
+        <div class="pill-group" id="regulationTraceTabs" role="tablist" aria-label="Regulation traceability themes"></div>
+        <p id="regulationTraceTimeline" class="micro-copy"></p>
+        <div class="detail-columns">
+          <div>
+            <p class="label">Risk</p>
+            <ul id="traceRisks"></ul>
+          </div>
+          <div>
+            <p class="label">Control</p>
+            <ul id="traceControls"></ul>
+          </div>
+          <div>
+            <p class="label">Owner</p>
+            <ul id="traceOwners"></ul>
+          </div>
+          <div>
+            <p class="label">Evidence</p>
+            <ul id="traceEvidence"></ul>
+          </div>
+        </div>
+        <div class="metrics-row">
+          <div>
+            <p class="label">Lifecycle Coverage</p>
+            <ul id="traceStages"></ul>
+          </div>
+          <div>
+            <p class="label">Linked KPIs</p>
+            <ul id="traceKpis"></ul>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="executive-dashboard" class="panel reveal">
+      <header class="section-head">
+        <p class="eyebrow">Executive Dashboard</p>
+        <h2>Can the Board Trust This System?</h2>
+        <p>The end state is measurable governance, not documentation volume.</p>
+      </header>
+
+      <div class="dashboard-filters">
+        <label>Business line
+          <select id="dashboardBusinessFilter">
+            <option value="All">All lines</option>
+            <option value="Lending">Lending</option>
+            <option value="Fraud">Fraud</option>
+            <option value="AML/KYC">AML/KYC</option>
+            <option value="Customer Service">Customer Service</option>
+            <option value="Compliance">Compliance</option>
+            <option value="Operations">Operations</option>
+          </select>
+        </label>
+        <label>AI type
+          <select id="dashboardAiFilter">
+            <option value="All">All types</option>
+            <option value="Predictive">Predictive</option>
+            <option value="GenAI">GenAI</option>
+            <option value="Hybrid">Hybrid</option>
+          </select>
+        </label>
+        <label>Lifecycle stage
+          <select id="dashboardStageFilter">
+            <option value="All">All stages</option>
+            <option value="Intake">Intake</option>
+            <option value="Development">Development</option>
+            <option value="Validation">Validation</option>
+            <option value="Monitoring">Monitoring</option>
+          </select>
+        </label>
+        <label>Risk domain
+          <select id="dashboardDomainFilter">
+            <option value="All">All domains</option>
+            <option value="Fairness">Fairness</option>
+            <option value="Explainability">Explainability</option>
+            <option value="Privacy">Privacy</option>
+            <option value="GenAI">GenAI</option>
+            <option value="Model Risk">Model Risk</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="control-row">
+        <div class="pill-group" id="dashboardViewToggle" role="tablist" aria-label="Dashboard perspective">
+          <button class="pill active" data-view="inherent">Inherent view</button>
+          <button class="pill" data-view="residual">Residual view</button>
+          <button class="pill" data-view="board">Board summary</button>
+          <button class="pill" data-view="regulator">Regulator summary</button>
+        </div>
+      </div>
+
+      <div id="kpiCockpit" class="kpi-grid"></div>
+
+      <div class="dashboard-layout">
+        <article class="glass-card">
+          <h3>Residual Loss Leaderboard</h3>
+          <table class="leaderboard">
+            <thead>
+              <tr>
+                <th>Use case</th>
+                <th>Inherent</th>
+                <th>Residual</th>
+                <th>Residual EAL</th>
+                <th>Stress (95%)</th>
+                <th>RAG</th>
+              </tr>
+            </thead>
+            <tbody id="residualLossLeaderboard"></tbody>
+          </table>
+          <h4>Portfolio Concentration by Business Line</h4>
+          <div id="dashboardConcentration" class="concentration-bars"></div>
+        </article>
+
+        <article class="glass-card">
+          <h3>Readiness Score</h3>
+          <div class="readiness-wrap">
+            <div id="readinessScoreGauge" class="readiness-gauge"><span id="readinessValue">0%</span></div>
+            <p id="readinessNarrative" class="micro-copy"></p>
+          </div>
+          <div class="mini-panels" id="miniRiskPanels"></div>
+        </article>
+      </div>
+
+      <article class="thesis-card">
+        <p class="eyebrow">Closing Thesis</p>
+        <h3>Intelligence without governance becomes systemic risk.</h3>
+        <p>X-Bank's objective is not zero risk. It is controlled, evidenced, and scalable AI risk management across the full banking lifecycle.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p>Aligned with NIST AI RMF (Govern, Map, Measure, Manage), EU AI Act risk-tiering logic, and banking model risk governance expectations.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

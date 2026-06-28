@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Market Recap — Jiaqi Zhu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,200;6..72,400;6..72,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-sky: #175C88; --color-coral: #CE5A48; --color-forest: #10362A;
+            --color-paper: #F1EADD; --color-ink: #2B3B48; --color-sand: #D5C4A1;
+            --line-ink: rgba(43,59,72,0.2); --line-paper: rgba(241,234,221,0.25);
+            --font-serif: 'Newsreader','Times New Roman',serif;
+            --font-sans: 'Inter',-apple-system,sans-serif;
+            --space-xs: 0.5rem; --space-sm: 1rem; --space-md: 2.5rem; --space-lg: 5rem; --space-xl: 8vh;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+        body { background:var(--color-paper); color:var(--color-ink); font-family:var(--font-sans); line-height:1.5; }
+        ::selection { background:var(--color-coral); color:var(--color-paper); }
+        a { color:inherit; text-decoration:none; transition:opacity 0.2s; }
+        a:hover { opacity:0.6; }
+
+        .nav-bar { background:var(--color-sky); border-bottom:1px solid var(--line-paper); position:sticky; top:0; z-index:10; display:flex; justify-content:space-between; align-items:center; padding:var(--space-sm) var(--space-md); }
+        .nav-brand { font-family:var(--font-serif); font-size:1.5rem; font-weight:500; letter-spacing:-0.02em; color:var(--color-paper); }
+        .nav-links { display:flex; gap:var(--space-md); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; font-weight:500; }
+        .nav-links a { color:var(--color-paper); opacity:0.7; }
+        .nav-links a:hover,.nav-links a.active-link { opacity:1; color:var(--color-sand); }
+        .mobile-menu-btn { display:none; background:none; border:none; color:var(--color-paper); font-size:1.5rem; cursor:pointer; }
+
+        .page-header { background:var(--color-coral); color:var(--color-paper); padding:var(--space-xl) var(--space-md); }
+        .page-header h1 { font-family:var(--font-serif); font-size:clamp(3rem,7vw,6rem); font-weight:400; letter-spacing:-0.03em; line-height:1; margin-bottom:var(--space-sm); }
+        .page-header p { font-size:1rem; opacity:0.9; max-width:48ch; line-height:1.6; }
+
+        .recap-list { padding:var(--space-lg) var(--space-md); }
+        .recap-list h2 { font-family:var(--font-serif); font-size:2.5rem; font-weight:400; letter-spacing:-0.02em; margin-bottom:var(--space-sm); }
+        .recap-list .sub-label { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em; opacity:0.5; margin-bottom:var(--space-lg); }
+
+        .week-entry { padding:var(--space-md) 0; border-bottom:1px solid var(--line-ink); display:grid; grid-template-columns:120px 1fr; gap:var(--space-md); align-items:baseline; transition:all 0.2s; }
+        .week-entry:hover { padding-left:12px; color:var(--color-coral); }
+        .week-entry:last-child { border-bottom:none; }
+        .week-date { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; opacity:0.5; padding-top:2px; }
+        .week-heading { font-family:var(--font-serif); font-size:1.3rem; letter-spacing:-0.01em; margin-bottom:6px; color:var(--color-ink); }
+        .week-entry:hover .week-heading { color:var(--color-coral); }
+        .week-summary { font-size:0.85rem; opacity:0.7; line-height:1.7; max-width:60ch; }
+        .week-tags { display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; }
+        .week-tag { font-size:0.55rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; padding:2px 8px; border:1px solid var(--line-ink); }
+
+        .footer { background:var(--color-forest); color:var(--color-sand); padding:var(--space-lg) var(--space-md) var(--space-md); border-top:1px solid var(--line-ink); }
+        .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:var(--space-md); margin-bottom:var(--space-lg); }
+        .footer-brand { font-family:var(--font-serif); font-size:2rem; margin-bottom:var(--space-sm); color:var(--color-paper); }
+        .footer-desc { font-size:0.8rem; max-width:30ch; opacity:0.8; }
+        .footer-col-title { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--color-paper); margin-bottom:var(--space-sm); font-weight:600; }
+        .footer-links { list-style:none; display:flex; flex-direction:column; gap:8px; }
+        .footer-links li { font-size:0.8rem; opacity:0.8; }
+        .footer-bottom { display:flex; justify-content:space-between; padding-top:var(--space-md); border-top:1px solid rgba(213,196,161,0.2); font-size:0.7rem; opacity:0.6; text-transform:uppercase; letter-spacing:0.05em; }
+
+        @media(max-width:768px){
+            .nav-links{display:none;}
+            .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(23,92,136,0.95);padding:var(--space-md);gap:var(--space-sm);}
+            .mobile-menu-btn{display:block;}
+            .week-entry{grid-template-columns:1fr;gap:4px;}
+            .footer-grid{grid-template-columns:1fr 1fr;}
+            .footer-brand-col{grid-column:1/-1;}
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-bar">
+        <a href="../index.html" class="nav-brand">Jiaqi Zhu</a>
+        <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../index.html#about">About</a>
+            <a href="../index.html#resume">Resume</a>
+            <a href="../index.html#portfolio">Portfolio</a>
+            <a href="#" class="active-link">Market Recap</a>
+            <a href="../research/index.html">Research</a>
+            <a href="../blog/index.html">Blog</a>
+            <a href="../library/index.html">Library</a>
+            <a href="../index.html#contact">Contact</a>
+        </div>
+    </div>
+
+    <div class="page-header">
+        <h1>Weekly Market Recap</h1>
+        <p>Weekly reflections on market movements, macro trends, and emerging signals across regions and sectors. A running log of observations — updated each week.</p>
+    </div>
+
+    <div class="recap-list">
+        <h2>Recent Weeks</h2>
+        <p class="sub-label">Latest entries first · Updated every weekend</p>
+
+        <!-- ── Copy this block to add a new week ── -->
+        <div class="week-entry">
+            <div class="week-date">Week 26 · 2026<br><span style="opacity:0.5">Jun 22–26</span></div>
+            <div>
+                <div class="week-heading"><a href="jun22-26-2026.html" style="text-decoration:underline;">AI De-rating Spreads as Oil Relief Cushions Rotation</a></div>
+                <p class="week-summary">Mortise Capital weekly recap. Nasdaq -4.6%, SOXX -7.9% as crowded AI positions unwound. Yet the Dow +0.6% and Russell +1.0% signaled rotation, not panic. Micron Q3: $25.11 EPS, 84.6% gross margin — confirming tight AI memory supply. <strong>Takeaway: profitable AI infrastructure over high-multiple applications.</strong></p>
+                <div class="week-tags">
+                    <span class="week-tag">Macro</span><span class="week-tag">AI</span><span class="week-tag">Semiconductors</span><span class="week-tag">Rotation</span>
+                </div>
+            </div>
+        </div>
+        <!-- ── Copy until here ── -->
+
+        <div class="week-entry">
+            <div class="week-date">Week 25 · 2026<br><span style="opacity:0.5">Jun 15–21</span></div>
+            <div>
+                <div class="week-heading">GBA Tech Stocks Rally &amp; Organic Agri Export Data</div>
+                <p class="week-summary">Greater Bay Area tech names saw broad gains as cross-border data flow pilot programs expanded. Meanwhile, China's organic agri exports grew 18% YoY in May — European markets leading demand. Divergence between hardware (strong) and software (mixed) becoming a clear theme.</p>
+                <div class="week-tags">
+                    <span class="week-tag">GBA</span><span class="week-tag">Tech</span><span class="week-tag">Agriculture</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="week-entry">
+            <div class="week-date">Week 24 · 2026<br><span style="opacity:0.5">Jun 8–14</span></div>
+            <div>
+                <div class="week-heading">AI Regulation Wave &amp; SME Credit Innovation</div>
+                <p class="week-summary">EU AI Act implementation guidelines dropped — significant implications for financial services AI deployment. In Asia, Hong Kong's HKMA issued a discussion paper on alternative credit scoring for SMEs, opening doors for fintech innovation in the lending space. Related: BOCHK Challenge work feels increasingly timely.</p>
+                <div class="week-tags">
+                    <span class="week-tag">AI Regulation</span><span class="week-tag">FinTech</span><span class="week-tag">SME Lending</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="week-entry">
+            <div class="week-date">Week 23 · 2026<br><span style="opacity:0.5">Jun 1–7</span></div>
+            <div>
+                <div class="week-heading">Oil Volatility &amp; Hard-Tech Funding Environment</div>
+                <p class="week-summary">Crude oil saw a sharp 6% correction on demand concerns — ripple effects across emerging market currencies. On the venture side, hard-tech seed rounds in GBA held steady despite broader VC pullback, signaling sustained institutional confidence in deep tech infrastructure plays.</p>
+                <div class="week-tags">
+                    <span class="week-tag">Commodities</span><span class="week-tag">Venture Capital</span><span class="week-tag">Hard Tech</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand-col"><div class="footer-brand">Jiaqi Zhu</div><p class="footer-desc">HKUST RMBI · Risk Management &amp; Business Intelligence.</p></div>
+            <div><h4 class="footer-col-title">Navigate</h4><ul class="footer-links"><li><a href="../index.html#about">About</a></li><li><a href="../index.html#resume">Resume</a></li><li><a href="../index.html#portfolio">Portfolio</a></li><li><a href="../market-recap/index.html">Market Recap</a></li><li><a href="../research/index.html">Research</a></li><li><a href="../blog/index.html">Blog</a></li><li><a href="../library/index.html">Library</a></li></ul></div>
+            <div><h4 class="footer-col-title">Sections</h4><ul class="footer-links"><li><a href="../market-recap/index.html">Weekly Recap</a></li><li><a href="../research/index.html">Reports</a></li><li><a href="../blog/index.html">Blog</a></li><li><a href="../library/index.html">Library</a></li></ul></div>
+            <div><h4 class="footer-col-title">Connect</h4><ul class="footer-links"><li><a href="https://www.linkedin.com/in/jiaqi-zhu-5a44a4384" target="_blank">LinkedIn</a></li><li><a href="https://github.com/GZ-November" target="_blank">GitHub</a></li><li><a href="mailto:jzhucr@connect.ust.hk">Email</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><span>© 2026 Jiaqi Zhu</span><span>Built with ❤️</span></div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open')));
+    </script>
+</body>
+</html>
