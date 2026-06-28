@@ -52,6 +52,18 @@
         .status-reading { color:var(--color-sky); border-color:var(--color-sky); }
         .status-queue { color:var(--color-ink); border-color:var(--color-ink); opacity:0.5; }
 
+        .book-card { display:grid; grid-template-columns:130px 1fr; gap:var(--space-md); padding:var(--space-md) 0; border-bottom:1px solid var(--line-ink); align-items:start; }
+        .book-card:last-child { border-bottom:none; padding-bottom:0; }
+        .book-cover { width:130px; aspect-ratio:2/3; object-fit:cover; }
+        .book-cover-placeholder { width:130px; aspect-ratio:2/3; background:var(--color-sand); display:flex; align-items:center; justify-content:center; font-family:var(--font-serif); font-size:0.8rem; opacity:0.4; text-align:center; padding:var(--space-xs); }
+        .book-badge { display:inline-block; font-size:0.55rem; text-transform:uppercase; letter-spacing:0.1em; font-weight:600; padding:2px 8px; border:1px solid var(--color-coral); color:var(--color-coral); margin-bottom:6px; }
+        .book-title { font-family:var(--font-serif); font-size:1.5rem; letter-spacing:-0.01em; line-height:1.2; margin-bottom:2px; }
+        .book-author { font-size:0.8rem; opacity:0.6; margin-bottom:var(--space-xs); }
+        .book-abstract { font-size:0.85rem; opacity:0.7; line-height:1.7; max-width:56ch; margin-bottom:var(--space-xs); }
+        .book-footer { display:flex; gap:var(--space-sm); align-items:center; flex-wrap:wrap; }
+        .book-link { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em; font-weight:600; color:var(--color-sky); }
+        .book-link:hover { opacity:0.6; }
+
         .counter { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; opacity:0.4; margin-top:var(--space-xs); }
 
         .footer { background:var(--color-forest); color:var(--color-sand); padding:var(--space-lg) var(--space-md) var(--space-md); }
@@ -68,6 +80,8 @@
             .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(23,92,136,0.95);padding:var(--space-md);gap:var(--space-sm);}
             .mobile-menu-btn{display:block;}
             .item-card{grid-template-columns:1fr;}
+            .book-card{grid-template-columns:1fr;}
+            .book-cover,.book-cover-placeholder{width:100px;}
             .item-status{justify-self:start;}
             .footer-grid{grid-template-columns:1fr 1fr;}
             .footer-brand-col{grid-column:1/-1;}
@@ -105,11 +119,22 @@
             <p class="section-desc">What I've read and what I'm reading</p>
 
             <!-- ── Copy this block to add a book ── -->
+            <div class="book-card">
+                <img class="book-cover" src="https://m.media-amazon.com/images/I/71SqLhTSF9L._SL1500_.jpg" alt="Principles for Dealing with the Changing World Order" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="book-cover-placeholder" style="display:none;">Principles for<br>Dealing with<br>the Changing<br>World Order</div>
+                <div>
+                    <span class="book-badge">NYT Bestseller</span>
+                    <div class="book-title">Principles for Dealing with the Changing World Order</div>
+                    <div class="book-author">Ray Dalio</div>
+                    <p class="book-abstract">Examines history's most turbulent economic and political periods to reveal why the times ahead will likely be radically different from those we've experienced in our lifetimes — but similar to those that have happened many times before. A framework for understanding the rise and fall of nations through long-term debt cycles, internal order cycles, and external order cycles.</p>
+                    <div class="book-footer">
+                        <span class="item-status status-reading">Reading</span>
+                        <a href="https://economicprinciples.org/the-changing-world-order" class="book-link" target="_blank">Book Site →</a>
+                    </div>
+                </div>
+            </div>
             <!-- ── Copy until here ── -->
 
-            <p style="font-family:var(--font-serif); font-size:1.2rem; opacity:0.4; padding:var(--space-md) 0;">
-                Nothing here yet. Reading list coming soon.
-            </p>
         </div>
 
         <!-- ═══════════ Courses & Learning ═══════════ -->
